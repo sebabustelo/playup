@@ -1,0 +1,313 @@
+.admin-promociones {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.admin-header {
+    margin-bottom: 30px;
+}
+
+.admin-header h1 {
+    color: #333;
+}
+
+.selectores {
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+}
+
+.selector-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    min-width: 200px;
+}
+
+.selector-group label {
+    font-weight: bold;
+    color: #333;
+}
+
+.selector-group select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.btn-nuevo {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    height: fit-content;
+}
+
+.btn-nuevo:hover {
+    background-color: #45a049;
+}
+
+.info-cancha {
+    background: #e8f5e9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid #4CAF50;
+}
+
+.info-cancha h3 {
+    color: #4CAF50;
+    margin-bottom: 5px;
+}
+
+.info-cancha p {
+    color: #666;
+    margin: 0;
+}
+
+.promocion-form {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.promocion-form h2 {
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group label:has(input[type="checkbox"]) {
+    flex-direction: row;
+    align-items: center;
+}
+
+.form-group input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.form-group small {
+    color: #666;
+    font-size: 0.85rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.btn-cancelar {
+    padding: 12px 24px;
+    background-color: #ccc;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-cancelar:hover {
+    background-color: #bbb;
+}
+
+.btn-submit {
+    padding: 12px 30px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background-color: #45a049;
+}
+
+.btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.promociones-list {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.promociones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.promocion-card {
+    padding: 20px;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    background: #f9f9f9;
+}
+
+.promocion-card.activa {
+    border-color: #4CAF50;
+    background: #e8f5e9;
+}
+
+.promocion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.promocion-header h4 {
+    color: #4CAF50;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.badge-activa {
+    background: #4CAF50;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.badge-inactiva {
+    background: #ccc;
+    color: #666;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.promocion-card p {
+    margin: 8px 0;
+    color: #666;
+}
+
+.promocion-card i {
+    margin-right: 8px;
+    color: #4CAF50;
+}
+
+.promocion-card .descripcion {
+    font-style: italic;
+    color: #888;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.promocion-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn-editar,
+.btn-eliminar {
+    flex: 1;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.btn-editar {
+    background-color: #2196F3;
+    color: white;
+}
+
+.btn-editar:hover {
+    background-color: #1976D2;
+}
+
+.btn-eliminar {
+    background-color: #f44336;
+    color: white;
+}
+
+.btn-eliminar:hover {
+    background-color: #d32f2f;
+}
+
+.mensaje-inicial {
+    text-align: center;
+    padding: 40px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .selectores {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .selector-group {
+        min-width: 100%;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+

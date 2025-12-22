@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "eamodio.gitlens",
+    "mhutchie.git-graph",
+    "donjayamanne.githistory",
+    "github.vscode-pull-request-github",
+    "conventionalcommits.conventionalcommits"
+  ]
+}
+

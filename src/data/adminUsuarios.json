@@ -1,0 +1,347 @@
+{
+    "personas": [
+      {
+        "id": 1,
+        "nombre": "Juan",
+        "apellido": "Perez",
+        "dni": "30111222",
+        "telefono": "1122334455",
+        "email": "juan@playup.com",
+        "roles": ["cliente"],
+        "tipo": "cliente",
+        "activo": true,
+        "direccion": "Av. Corrientes 1234",
+        "ciudad": "Buenos Aires",
+        "codigoPostal": "C1043AAX"
+      },
+      {
+        "id": 2,
+        "nombre": "Maria",
+        "apellido": "Gomez",
+        "dni": "33444555",
+        "telefono": "1144556677",
+        "email": "mariagomez@mail.com",
+        "roles": ["cliente", "personal_servicio"],
+        "tipo": "cliente/peluquero",
+        "activo": true
+      },
+      {
+        "id": 3,
+        "nombre": "Pedro",
+        "apellido": "Rodriguez",
+        "dni": "28888111",
+        "telefono": "1133445566",
+        "email": "pedro@mail.com",
+        "roles": ["veterinario"],
+        "tipo": "veterinario",
+        "matricula": "MAT-001",
+        "especialidades": ["clínica general", "cirugía"],
+        "activo": true
+      },
+      {
+        "id": 4,
+        "nombre": "Laura",
+        "apellido": "Lopez",
+        "dni": "31222333",
+        "telefono": "1199887766",
+        "email": "laura@mail.com",
+        "roles": ["cliente", "veterinario"],
+        "tipo": "cliente/veterinario",
+        "matricula": "MAT-002",
+        "especialidades": ["dermatología"],
+        "activo": true
+      },
+      {
+        "id": 5,
+        "nombre": "Ana",
+        "apellido": "Torres",
+        "dni": "35000222",
+        "telefono": "1177553311",
+        "email": "ana@mail.com",
+        "roles": ["personal_servicio"],
+        "tipo": "peluquero",
+        "servicio_tipo": "Peluquero",
+        "activo": true
+      },
+      {
+        "id": 6,
+        "nombre": "Carlos",
+        "apellido": "Gutiérrez",
+        "dni": "40111222",
+        "telefono": "1155667788",
+        "email": "carlosg@vet.com",
+        "roles": ["veterinario"],
+        "tipo": "veterinario",
+        "matricula": "MAT-003",
+        "especialidades": ["clínica general", "odontología"],
+        "activo": true
+      },
+      {
+        "id": 7,
+        "nombre": "Ana",
+        "apellido": "Martínez",
+        "dni": "42111333",
+        "telefono": "1166778899",
+        "email": "anam@vet.com",
+        "roles": ["veterinario"],
+        "tipo": "veterinario",
+        "matricula": "MAT-004",
+        "especialidades": ["cirugía", "traumatología"],
+        "activo": true
+      },
+      {
+        "id": 8,
+        "nombre": "Roberto",
+        "apellido": "Fernández",
+        "dni": "44111444",
+        "telefono": "1177889900",
+        "email": "robertof@vet.com",
+        "roles": ["veterinario"],
+        "tipo": "veterinario",
+        "matricula": "MAT-005",
+        "especialidades": ["clínica general", "dermatología"],
+        "activo": true
+      },
+      {
+        "id": 9,
+        "nombre": "Silvia",
+        "apellido": "Díaz",
+        "dni": "46111555",
+        "telefono": "1188990011",
+        "email": "silviad@vet.com",
+        "roles": ["veterinario"],
+        "tipo": "veterinario",
+        "matricula": "MAT-006",
+        "especialidades": ["cirugía", "traumatología"],
+        "activo": true
+      },
+      {
+        "id": 10,
+        "nombre": "Lucía",
+        "apellido": "García",
+        "dni": "50111666",
+        "telefono": "1199001122",
+        "email": "lucia.garcia@mail.com",
+        "roles": ["cliente"],
+        "tipo": "cliente",
+        "activo": true
+      },
+      {
+        "id": 11,
+        "nombre": "Martín",
+        "apellido": "Rodríguez",
+        "dni": "52111777",
+        "telefono": "1100112233",
+        "email": "martin.rod@mail.com",
+        "roles": ["cliente"],
+        "tipo": "cliente",
+        "activo": true
+      },
+      {
+        "id": 12,
+        "nombre": "Carolina",
+        "apellido": "López",
+        "dni": "54111888",
+        "telefono": "1111223344",
+        "email": "caro.lopez@mail.com",
+        "roles": ["cliente"],
+        "tipo": "cliente",
+        "activo": true
+      },
+      {
+        "id": 13,
+        "nombre": "Diego",
+        "apellido": "Sánchez",
+        "dni": "56111999",
+        "telefono": "1122334455",
+        "email": "diego.sanchez@mail.com",
+        "roles": ["cliente"],
+        "tipo": "cliente",
+        "activo": true
+      },
+      {
+        "id": 14,
+        "nombre": "Florencia",
+        "apellido": "Pérez",
+        "dni": "58122000",
+        "telefono": "1133445566",
+        "email": "flor.pereza@mail.com",
+        "roles": ["cliente"],
+        "tipo": "cliente",
+        "activo": true
+      },
+      {
+        "id": 15,
+        "nombre": "Gabriel",
+        "apellido": "Torres",
+        "dni": "60122111",
+        "telefono": "1144556677",
+        "email": "gabo.torres@mail.com",
+        "roles": ["cliente"],
+        "tipo": "cliente",
+        "activo": true
+      },
+      {
+        "id": 16,
+        "nombre": "Valentina",
+        "apellido": "Romero",
+        "dni": "62122222",
+        "telefono": "1155667788",
+        "email": "vale.romero@mail.com",
+        "roles": ["cliente"],
+        "tipo": "cliente",
+        "activo": true
+      },
+      {
+        "id": 17,
+        "nombre": "Facundo",
+        "apellido": "Alvarez",
+        "dni": "64122333",
+        "telefono": "1166778899",
+        "email": "facu.alvarez@mail.com",
+        "roles": ["cliente"],
+        "tipo": "cliente",
+        "activo": true
+      },
+      {
+        "id": 18,
+        "nombre": "Sofía",
+        "apellido": "Admin",
+        "dni": "30123456",
+        "telefono": "1100001122",
+        "email": "admin@playup.com",
+        "roles": ["admin"],
+        "tipo": "administrador",
+        "activo": true
+      }
+    ],
+    "credenciales": [
+      {
+        "persona_id": 18,
+        "email": "admin@playup.com",
+        "password": "admin123",
+        "roles": ["admin"]
+      },
+      {
+        "persona_id": 3,
+        "email": "pedro@mail.com",
+        "password": "vet123",
+        "roles": ["cliente"]
+      },
+      {
+        "persona_id": 5,
+        "email": "ana@mail.com",
+        "password": "servicio123",
+        "roles": ["personal_servicio"]
+      },
+      {
+        "persona_id": 1,
+        "email": "juan@playup.com",
+        "password": "juan123",
+        "roles": ["cliente"]
+      }
+    ],
+    "usuarios_sistema": [
+      {
+        "id": 2,
+        "persona_id": 3,
+        "usuario": "veterinario1",
+        "rol": "veterinario",
+        "activo": true
+      },
+      {
+        "id": 3,
+        "persona_id": 4,
+        "usuario": "veterinario2",
+        "rol": "veterinario",
+        "activo": true
+      },
+      {
+        "id": 4,
+        "persona_id": 1,
+        "usuario": "cliente1",
+        "rol": "cliente",
+        "activo": true
+      },
+      {
+        "id": 5,
+        "persona_id": 2,
+        "usuario": "cliente2",
+        "rol": "cliente",
+        "activo": true
+      },
+      {
+        "id": 6,
+        "persona_id": 5,
+        "usuario": "peluquero1",
+        "rol": "personal_servicio",
+        "activo": true
+      }
+    ],
+    "resumen_roles": {
+      "total_personas": 18,
+      "total_clientes": 11,
+      "total_veterinarios": 6,
+      "total_personal_servicio": 2,
+      "total_usuarios_sistema": 5,
+      "roles_disponibles": ["cliente", "veterinario", "personal_servicio", "administrativo", "admin"]
+    },
+    "mascotas": [
+      {
+        "persona_id": 1,
+        "email": "juan@playup.com",
+        "pets": [
+          {
+            "id": "pet-juan-1",
+            "name": "Laika",
+            "species": "dog",
+            "breed": "Mestizo",
+            "age": 5,
+            "weight": 25,
+            "sex": "female",
+            "color": "Negro con manchas blancas en pecho y patas",
+            "birthDate": "2019-06-10",
+            "microchip": "123456789012345",
+            "vaccinated": true,
+            "dewormed": true,
+            "sterilized": true,
+            "allergies": null,
+            "chronicConditions": null,
+            "notes": "Consulta general y plan de vacunación. Muy activa y juguetona, requiere ejercicio diario.",
+            "photo": "/img/mascotas/laika.jpg",
+            "instagram": "laika_playup",
+            "allowTagging": true,
+            "createdAt": "2024-01-15T10:00:00.000Z",
+            "updatedAt": "2024-01-15T10:00:00.000Z"
+          },
+          {
+            "id": "pet-juan-2",
+            "name": "Kanon",
+            "species": "cat",
+            "breed": "Mestizo",
+            "age": 4,
+            "weight": 5.2,
+            "sex": "male",
+            "color": "Naranja atigrado",
+            "birthDate": "2020-08-20",
+            "microchip": "987654321098765",
+            "vaccinated": true,
+            "dewormed": true,
+            "sterilized": true,
+            "allergies": null,
+            "chronicConditions": null,
+            "notes": "Control anual de salud. Gato tranquilo y cariñoso.",
+            "photo": "/img/mascotas/kanon.jpg",
+            "instagram": "kanon_playup",
+            "allowTagging": true,
+            "createdAt": "2024-01-15T10:00:00.000Z",
+            "updatedAt": "2024-01-15T10:00:00.000Z"
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "fecha_actualizacion": "2025-11-08T08:17:18.000"
+    }
+  }
+

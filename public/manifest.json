@@ -1,0 +1,63 @@
+{
+  "name": "PlayUp - Organiza tus Partidos",
+  "short_name": "PlayUp",
+  "description": "Organiza partidos de fútbol, pádel y más deportes. Busca canchas, crea partidos e invita jugadores.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#4CAF50",
+  "theme_color": "#4CAF50",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/img/icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/img/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["sports", "lifestyle", "social"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Buscar Canchas",
+      "short_name": "Canchas",
+      "description": "Busca canchas por ciudad o ubicación",
+      "url": "/buscar-canchas",
+      "icons": [{ "src": "/img/icon.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Crear Partido",
+      "short_name": "Partido",
+      "description": "Crea un nuevo partido",
+      "url": "/crear-partido",
+      "icons": [{ "src": "/img/icon.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Mis Partidos",
+      "short_name": "Partidos",
+      "description": "Gestiona tus partidos",
+      "url": "/mis-partidos",
+      "icons": [{ "src": "/img/icon.png", "sizes": "192x192" }]
+    }
+  ]
+}
+

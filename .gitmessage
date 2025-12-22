@@ -1,0 +1,30 @@
+# <tipo>(<ámbito>): <asunto corto>
+#
+# <descripción detallada opcional>
+#
+# <notas opcional>
+#
+# Tipos permitidos:
+#   feat:     Nueva funcionalidad
+#   fix:      Corrección de bug
+#   docs:     Cambios en documentación
+#   style:    Cambios de formato (espacios, comas, etc.)
+#   refactor: Refactorización de código
+#   test:     Agregar o modificar tests
+#   chore:    Tareas de mantenimiento
+#   perf:     Mejoras de rendimiento
+#
+# Ámbito (opcional):
+#   admin:    Panel de administración
+#   auth:     Autenticación
+#   canchas:  Gestión de canchas
+#   partidos: Gestión de partidos
+#   ui:       Interfaz de usuario
+#   api:      API o servicios
+#
+# Ejemplos:
+#   feat(admin): agregar gestión de predios
+#   fix(canchas): corregir cálculo de precios
+#   style(ui): mejorar diseño del header
+#   docs: actualizar README con instrucciones
+

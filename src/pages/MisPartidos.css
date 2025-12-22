@@ -1,0 +1,108 @@
+.mis-partidos {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.mis-partidos h1 {
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.sin-partidos {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sin-partidos p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.btn-crear {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-crear:hover {
+    background-color: #45a049;
+}
+
+.partidos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.partido-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.2s;
+    position: relative;
+}
+
+.partido-card:hover {
+    transform: translateY(-5px);
+}
+
+.partido-card h3 {
+    color: #4CAF50;
+    margin-bottom: 15px;
+}
+
+.partido-card p {
+    margin: 8px 0;
+    color: #666;
+}
+
+.partido-card i {
+    margin-right: 8px;
+    color: #4CAF50;
+}
+
+.jugadores-count {
+    font-weight: bold;
+    color: #333;
+}
+
+.estado {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.estado-activo {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.estado-completado {
+    background-color: #2196F3;
+    color: white;
+}
+
+.estado-cancelado {
+    background-color: #f44336;
+    color: white;
+}
+
+
+
+
