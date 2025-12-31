@@ -30,20 +30,25 @@
 }
 
 .toast-success {
-    background-color: #4CAF50;
+    background: var(--gradient-green);
+    color: var(--text);
 }
 
 .toast-error {
-    background-color: #f44336;
+    background-color: var(--error);
+    color: var(--text-on-dark);
 }
 
 .toast-info {
-    background-color: #2196F3;
+    background: var(--gradient-blue);
+    color: var(--text-on-dark);
 }
 
 .toast-warning {
-    background-color: #ff9800;
+    background: linear-gradient(135deg, var(--basket-orange) 0%, var(--accent-orange-dark) 100%);
+    color: var(--text-on-dark);
 }
+
 
 
 

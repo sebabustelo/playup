@@ -7,17 +7,18 @@
 }
 
 .auth-card {
-    background: white;
+    background: var(--surface);
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
     width: 100%;
     max-width: 400px;
+    border: 1px solid var(--border-light);
 }
 
 .auth-card h1 {
     text-align: center;
-    color: #4CAF50;
+    color: var(--primary-blue);
     margin-bottom: 30px;
 }
 
@@ -29,32 +30,42 @@
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
-    color: #333;
+    color: var(--text);
 }
 
 .form-group input {
     width: 100%;
     padding: 12px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border);
     border-radius: 5px;
     font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    border-color: var(--primary-blue);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.1);
 }
 
 .btn-primary {
     width: 100%;
     padding: 12px;
-    background-color: #4CAF50;
-    color: white;
+    background: var(--gradient-primary);
+    color: var(--text);
     border: none;
     border-radius: 5px;
     font-size: 1rem;
-    font-weight: bold;
+    font-weight: 600;
     cursor: pointer;
     margin-top: 10px;
+    transition: all 0.3s;
 }
 
 .btn-primary:hover {
-    background-color: #45a049;
+    background: linear-gradient(135deg, var(--primary-blue-light) 0%, var(--primary-green-light) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow-accent);
 }
 
 .btn-primary:disabled {
@@ -75,14 +86,14 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: #ddd;
+    background: var(--border);
 }
 
 .divider span {
-    background: white;
+    background: var(--surface);
     padding: 0 15px;
     position: relative;
-    color: #666;
+    color: var(--text-light);
 }
 
 .social-buttons {
@@ -95,7 +106,7 @@
 .btn-facebook {
     width: 100%;
     padding: 12px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border);
     border-radius: 5px;
     font-size: 1rem;
     cursor: pointer;
@@ -103,20 +114,29 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
+    transition: all 0.2s;
 }
 
 .btn-google {
-    background-color: white;
-    color: #333;
+    background-color: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    font-weight: 500;
 }
 
 .btn-google:hover {
-    background-color: #f5f5f5;
+    background-color: var(--surface-light);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.btn-google i {
+    color: #4285f4;
+    font-size: 1.1rem;
 }
 
 .btn-facebook {
     background-color: #1877F2;
-    color: white;
+    color: var(--text-on-dark);
     border-color: #1877F2;
 }
 
@@ -133,14 +153,15 @@
 .auth-link {
     text-align: center;
     margin-top: 20px;
-    color: #666;
+    color: var(--text-light);
 }
 
 .auth-link a {
-    color: #4CAF50;
-    font-weight: bold;
+    color: var(--primary-blue);
+    font-weight: 600;
+    transition: color 0.3s;
 }
 
-
-
-
+.auth-link a:hover {
+    color: var(--primary-green);
+}

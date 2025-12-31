@@ -1,11 +1,19 @@
 import { useState, useEffect } from 'react';
 import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc, query, where } from 'firebase/firestore';
 import { db } from '@/firebase';
-import { useToast } from '@/context';
+import { useToast, useAuth } from '@/context';
+import { tieneRol, esAdminPredio } from '@/services/usuariosService';
+import { ROLES } from '@/utils/constants';
+import ConfirmDialog from '@/components/ConfirmDialog';
 import './AdminCanchas.css';
 
 const AdminCanchas = () => {
     const { addToast } = useToast();
+    const { user } = useAuth();
+    const esAdmin = tieneRol(user, ROLES.ADMIN);
+    const esAdminPredios = tieneRol(user, ROLES.ADMIN_PREDIOS);
+    const prediosAsignados = user?.prediosAsignados || [];
+    
     const [predios, setPredios] = useState([]);
     const [canchas, setCanchas] = useState([]);
     const [predioSeleccionado, setPredioSeleccionado] = useState('');
@@ -17,8 +25,15 @@ const AdminCanchas = () => {
         nombre: '',
         deporte: 'futbol',
         tipo: '',
-        numero: ''
+        numero: '',
+        caracteristicas: [] // Array de objetos {nombre: string, valor: string}
     });
+    
+    const [nuevaCaracteristica, setNuevaCaracteristica] = useState({
+        nombre: '',
+        valor: ''
+    });
+    const [dialogEliminar, setDialogEliminar] = useState({ isOpen: false, canchaId: null });
 
     useEffect(() => {
         cargarPredios();
@@ -35,11 +50,22 @@ const AdminCanchas = () => {
     const cargarPredios = async () => {
         try {
             const querySnapshot = await getDocs(collection(db, 'predios'));
-            const prediosData = querySnapshot.docs.map(doc => ({
+            let prediosData = querySnapshot.docs.map(doc => ({
                 id: doc.id,
                 ...doc.data()
             }));
+            
+            // Si es admin_predios, filtrar solo los predios asignados
+            if (esAdminPredios && !esAdmin) {
+                prediosData = prediosData.filter(predio => prediosAsignados.includes(predio.id));
+            }
+            
             setPredios(prediosData);
+            
+            // Si solo hay un predio disponible y es admin_predios, seleccionarlo automáticamente
+            if (prediosData.length === 1 && esAdminPredios && !esAdmin) {
+                setPredioSeleccionado(prediosData[0].id);
+            }
         } catch (error) {
             console.error('Error cargando predios:', error);
             addToast('Error al cargar predios', 'error');
@@ -74,6 +100,35 @@ const AdminCanchas = () => {
         setFormData({ ...formData, [name]: value });
     };
 
+    const handleCaracteristicaChange = (e) => {
+        const { name, value } = e.target;
+        setNuevaCaracteristica({ ...nuevaCaracteristica, [name]: value });
+    };
+
+    const agregarCaracteristica = () => {
+        if (!nuevaCaracteristica.nombre.trim() || !nuevaCaracteristica.valor.trim()) {
+            addToast('Completa nombre y valor de la característica', 'error');
+            return;
+        }
+
+        // Verificar si ya existe una característica con ese nombre
+        if (formData.caracteristicas.some(c => c.nombre.toLowerCase() === nuevaCaracteristica.nombre.toLowerCase())) {
+            addToast('Ya existe una característica con ese nombre', 'error');
+            return;
+        }
+
+        setFormData({
+            ...formData,
+            caracteristicas: [...formData.caracteristicas, { ...nuevaCaracteristica }]
+        });
+        setNuevaCaracteristica({ nombre: '', valor: '' });
+    };
+
+    const eliminarCaracteristica = (index) => {
+        const nuevasCaracteristicas = formData.caracteristicas.filter((_, i) => i !== index);
+        setFormData({ ...formData, caracteristicas: nuevasCaracteristicas });
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -83,6 +138,15 @@ const AdminCanchas = () => {
             setLoading(false);
             return;
         }
+        
+        // Si es admin_predios, verificar que el predio esté asignado
+        if (esAdminPredios && !esAdmin) {
+            if (!prediosAsignados.includes(formData.predioId)) {
+                addToast('No tienes permisos para gestionar este predio', 'error');
+                setLoading(false);
+                return;
+            }
+        }
 
         try {
             const canchaData = {
@@ -91,6 +155,7 @@ const AdminCanchas = () => {
                 deporte: formData.deporte,
                 tipo: formData.tipo,
                 numero: formData.numero || null,
+                caracteristicas: formData.caracteristicas || [],
                 activa: true,
                 creadoEn: editando ? editando.creadoEn : new Date(),
                 actualizadoEn: new Date()
@@ -109,8 +174,10 @@ const AdminCanchas = () => {
                 nombre: '',
                 deporte: 'futbol',
                 tipo: '',
-                numero: ''
+                numero: '',
+                caracteristicas: []
             });
+            setNuevaCaracteristica({ nombre: '', valor: '' });
             setMostrarForm(false);
             setEditando(null);
             cargarCanchas();
@@ -129,35 +196,44 @@ const AdminCanchas = () => {
             nombre: cancha.nombre,
             deporte: cancha.deporte,
             tipo: cancha.tipo,
-            numero: cancha.numero || ''
+            numero: cancha.numero || '',
+            caracteristicas: cancha.caracteristicas || []
         });
+        setNuevaCaracteristica({ nombre: '', valor: '' });
         setMostrarForm(true);
     };
 
-    const handleEliminar = async (id) => {
-        if (!window.confirm('¿Estás seguro de eliminar esta cancha? Esto también eliminará sus precios y promociones.')) return;
+    const handleEliminar = (id) => {
+        setDialogEliminar({ isOpen: true, canchaId: id });
+    };
+
+    const confirmarEliminar = async () => {
+        const { canchaId } = dialogEliminar;
+        if (!canchaId) return;
 
         try {
             // Eliminar precios asociados
             const preciosSnapshot = await getDocs(
-                query(collection(db, 'precios'), where('canchaId', '==', id))
+                query(collection(db, 'precios'), where('canchaId', '==', canchaId))
             );
             const deletePrecios = preciosSnapshot.docs.map(doc => deleteDoc(doc.ref));
             await Promise.all(deletePrecios);
 
             // Eliminar promociones asociadas
             const promosSnapshot = await getDocs(
-                query(collection(db, 'promociones'), where('canchaId', '==', id))
+                query(collection(db, 'promociones'), where('canchaId', '==', canchaId))
             );
             const deletePromos = promosSnapshot.docs.map(doc => deleteDoc(doc.ref));
             await Promise.all(deletePromos);
 
-            await deleteDoc(doc(db, 'canchas', id));
+            await deleteDoc(doc(db, 'canchas', canchaId));
             addToast('Cancha eliminada', 'success');
             cargarCanchas();
+            setDialogEliminar({ isOpen: false, canchaId: null });
         } catch (error) {
             console.error('Error:', error);
             addToast('Error al eliminar cancha', 'error');
+            setDialogEliminar({ isOpen: false, canchaId: null });
         }
     };
 
@@ -179,6 +255,7 @@ const AdminCanchas = () => {
                         setEditando(null);
                     }}
                     className="select-predio"
+                    disabled={esAdminPredios && !esAdmin && predios.length === 1}
                 >
                     <option value="">-- Selecciona un predio --</option>
                     {predios.map(predio => (
@@ -187,6 +264,12 @@ const AdminCanchas = () => {
                         </option>
                     ))}
                 </select>
+                {esAdminPredios && !esAdmin && predios.length === 1 && (
+                    <small className="predio-info-hint">
+                        <i className="fas fa-info-circle"></i>
+                        Solo puedes gestionar este predio asignado
+                    </small>
+                )}
                 {predioSeleccionado && (
                     <button
                         onClick={() => {
@@ -195,8 +278,10 @@ const AdminCanchas = () => {
                                 nombre: '',
                                 deporte: 'futbol',
                                 tipo: '',
-                                numero: ''
+                                numero: '',
+                                caracteristicas: []
                             });
+                            setNuevaCaracteristica({ nombre: '', valor: '' });
                             setMostrarForm(true);
                             setEditando(null);
                         }}
@@ -281,6 +366,64 @@ const AdminCanchas = () => {
                             )}
                         </div>
                     </div>
+
+                    <div className="form-group form-group-full">
+                        <label>Características de la Cancha</label>
+                        <div className="caracteristicas-container">
+                            <div className="caracteristicas-list">
+                                {formData.caracteristicas.length > 0 ? (
+                                    formData.caracteristicas.map((caracteristica, index) => (
+                                        <div key={index} className="caracteristica-item">
+                                            <span className="caracteristica-nombre">{caracteristica.nombre}:</span>
+                                            <span className="caracteristica-valor">{caracteristica.valor}</span>
+                                            <button
+                                                type="button"
+                                                onClick={() => eliminarCaracteristica(index)}
+                                                className="btn-eliminar-caracteristica"
+                                                title="Eliminar característica"
+                                            >
+                                                <i className="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <p className="sin-caracteristicas">No hay características agregadas</p>
+                                )}
+                            </div>
+                            <div className="agregar-caracteristica">
+                                <div className="caracteristica-inputs">
+                                    <input
+                                        type="text"
+                                        name="nombre"
+                                        value={nuevaCaracteristica.nombre}
+                                        onChange={handleCaracteristicaChange}
+                                        placeholder="Ej: Techada, Superficie, Iluminación"
+                                        className="input-caracteristica-nombre"
+                                    />
+                                    <input
+                                        type="text"
+                                        name="valor"
+                                        value={nuevaCaracteristica.valor}
+                                        onChange={handleCaracteristicaChange}
+                                        placeholder="Ej: Sí, Césped sintético, LED"
+                                        className="input-caracteristica-valor"
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={agregarCaracteristica}
+                                        className="btn-agregar-caracteristica"
+                                        title="Agregar característica"
+                                    >
+                                        <i className="fas fa-plus"></i> Agregar
+                                    </button>
+                                </div>
+                                <small className="form-hint">
+                                    Ejemplos: Techada: Sí, Superficie: Césped sintético, Iluminación: LED, Vestuarios: Sí
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
                     <div className="form-actions">
                         <button type="button" onClick={() => { setMostrarForm(false); setEditando(null); }} className="btn-cancelar">
                             Cancelar
@@ -308,6 +451,20 @@ const AdminCanchas = () => {
                                     </div>
                                     <p><i className="fas fa-futbol"></i> {cancha.deporte}</p>
                                     <p><i className="fas fa-users"></i> {cancha.tipo}</p>
+                                    {cancha.caracteristicas && cancha.caracteristicas.length > 0 && (
+                                        <div className="cancha-caracteristicas">
+                                            {cancha.caracteristicas.slice(0, 3).map((car, idx) => (
+                                                <span key={idx} className="caracteristica-badge">
+                                                    {car.nombre}: {car.valor}
+                                                </span>
+                                            ))}
+                                            {cancha.caracteristicas.length > 3 && (
+                                                <span className="caracteristica-more">
+                                                    +{cancha.caracteristicas.length - 3} más
+                                                </span>
+                                            )}
+                                        </div>
+                                    )}
                                     <div className="cancha-actions">
                                         <button onClick={() => handleEditar(cancha)} className="btn-editar">
                                             Editar
@@ -329,6 +486,40 @@ const AdminCanchas = () => {
                     <p>Si no hay predios, créalos primero en <strong>Gestionar Predios</strong>.</p>
                 </div>
             )}
+
+            <ConfirmDialog
+                isOpen={dialogEliminar.isOpen}
+                onClose={() => setDialogEliminar({ isOpen: false, canchaId: null })}
+                onConfirm={confirmarEliminar}
+                type="danger"
+                title="Eliminar Cancha"
+                message={
+                    <div>
+                        <p style={{ marginBottom: '16px', fontWeight: 500 }}>
+                            ¿Estás seguro de eliminar esta cancha?
+                        </p>
+                        <div style={{ marginBottom: '16px' }}>
+                            <p style={{ marginBottom: '8px', fontWeight: 500, color: '#dc3545' }}>
+                                Esta acción también eliminará:
+                            </p>
+                            <ul style={{ margin: '8px 0', paddingLeft: '20px', color: '#666' }}>
+                                <li>Todos los precios asociados</li>
+                                <li>Todas las promociones asociadas</li>
+                            </ul>
+                        </div>
+                        <p style={{ 
+                            margin: 0, 
+                            color: '#dc3545', 
+                            fontWeight: 600,
+                            fontSize: '0.95rem'
+                        }}>
+                            ⚠️ Esta acción NO se puede deshacer.
+                        </p>
+                    </div>
+                }
+                confirmText="Eliminar"
+                cancelText="Cancelar"
+            />
         </div>
     );
 };

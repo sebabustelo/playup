@@ -295,6 +295,7 @@ const AdminPromociones = () => {
                             <label>Fecha Inicio *</label>
                             <input
                                 type="date"
+                                lang="es-AR"
                                 name="fechaInicio"
                                 value={formData.fechaInicio}
                                 onChange={handleChange}
@@ -305,6 +306,7 @@ const AdminPromociones = () => {
                             <label>Fecha Fin *</label>
                             <input
                                 type="date"
+                                lang="es-AR"
                                 name="fechaFin"
                                 value={formData.fechaFin}
                                 onChange={handleChange}

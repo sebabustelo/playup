@@ -1,12 +1,17 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/context';
+import { tieneRol } from '@/services/usuariosService';
+import { ROLES } from '@/utils/constants';
 import './Header.css';
 
 const Header = () => {
     const { user, logout } = useAuth();
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
+    
+    // Verificar si el usuario tiene permisos de administración
+    const tienePermisosAdmin = user && (tieneRol(user, ROLES.ADMIN) || tieneRol(user, ROLES.ADMIN_PREDIOS));
 
     const handleLogout = async () => {
         await logout();
@@ -44,7 +49,7 @@ const Header = () => {
                             <Link to="/mis-partidos" className="nav-link" onClick={handleClose}>
                                 <i className="fas fa-list"></i> Mis Partidos
                             </Link>
-                            {user.roleNames?.includes('admin') && (
+                            {tienePermisosAdmin && (
                                 <Link to="/admin" className="nav-link" onClick={handleClose}>
                                     <i className="fas fa-cog"></i> Admin
                                 </Link>

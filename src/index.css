@@ -1,3 +1,81 @@
+:root {
+  /* Paleta oficial PlayUp - Basada en logo */
+  
+  /* Colores principales (Brand) */
+  --primary-blue: #1E88E5;
+  --primary-green: #7ED957;
+  
+  /* Colores deportivos secundarios */
+  --soccer-white: #FFFFFF;
+  --basket-orange: #F7931E;
+  --tennis-lime: #B6FF3B;
+  
+  /* Fondos y UI */
+  --bg-dark: #0B1220;
+  --bg-dark-2: #14213D;
+  --neutral-gray: #9CA3AF;
+  
+  /* Colores derivados */
+  --primary-blue-light: #42A5F5;
+  --primary-blue-dark: #1565C0;
+  --primary-green-light: #9FE57A;
+  --primary-green-dark: #5CB83A;
+  --accent-lime-light: #C8FF66;
+  --accent-lime-dark: #9ECC00;
+  --accent-orange-light: #FFB74D;
+  --accent-orange-dark: #E65100;
+  
+  /* Colores semánticos */
+  --primary: var(--primary-blue);
+  --primary-hover: var(--primary-blue-light);
+  --primary-dark: var(--primary-blue-dark);
+  --secondary: var(--primary-green);
+  --secondary-hover: var(--primary-green-light);
+  --secondary-dark: var(--primary-green-dark);
+  --accent: var(--tennis-lime);
+  --accent-hover: var(--accent-lime-light);
+  --accent-dark: var(--accent-lime-dark);
+  --highlight: var(--basket-orange);
+  --highlight-hover: var(--accent-orange-light);
+  --highlight-dark: var(--accent-orange-dark);
+  
+  /* Fondos - Modo claro (gris suave) */
+  --background: #EFF2F5;
+  --background-secondary: #F5F7FA;
+  --background-light: var(--soccer-white);
+  --surface: var(--soccer-white);
+  --surface-light: #F8F9FA;
+  --surface-dark: var(--bg-dark-2);
+  
+  /* Textos */
+  --text: var(--bg-dark);
+  --text-light: var(--neutral-gray);
+  --text-muted: var(--neutral-gray);
+  --text-on-dark: var(--soccer-white);
+  
+  /* Bordes y sombras */
+  --border: rgba(158, 163, 175, 0.2);
+  --border-light: rgba(158, 163, 175, 0.1);
+  --shadow: rgba(30, 136, 229, 0.15);
+  --shadow-accent: rgba(126, 217, 87, 0.2);
+  --shadow-lime: rgba(182, 255, 59, 0.25);
+  --shadow-orange: rgba(247, 147, 30, 0.2);
+  --shadow-dark: rgba(11, 18, 32, 0.5);
+  
+  /* Estados (Design System) */
+  --success: var(--primary-green);
+  --info: var(--primary-blue);
+  --warning: var(--basket-orange);
+  --error: #EF4444;
+  --disabled: var(--neutral-gray);
+  
+  /* Gradientes */
+  --gradient-primary: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-green) 100%);
+  --gradient-hero: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-dark-2) 100%);
+  --gradient-blue: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+  --gradient-green: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-dark) 100%);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -10,7 +88,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f5f5f5;
+  background-color: var(--background);
+  color: var(--text);
+  min-height: 100vh;
 }
 
 code {

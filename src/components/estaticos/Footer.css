@@ -1,9 +1,10 @@
 .footer {
-    background-color: #333;
-    color: white;
+    background: var(--bg-dark-2);
+    color: var(--text-on-dark);
     padding: 2rem 0;
     margin-top: auto;
     text-align: center;
+    border-top: 1px solid var(--border);
 }
 
 .footer-container {
@@ -15,6 +16,7 @@
 .footer p {
     margin: 5px 0;
 }
+
 
 
 

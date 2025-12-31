@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc, query, where } from 'firebase/firestore';
 import { db } from '@/firebase';
 import { useToast } from '@/context';
+import GoogleMapsInputSimple from '@/components/GoogleMapsInputSimple';
+import AddressInputSimple from '@/components/AddressInputSimple';
 import './AdminPredios.css';
 
 const AdminPredios = () => {
@@ -18,7 +20,11 @@ const AdminPredios = () => {
         latitud: '',
         longitud: '',
         telefono: '',
-        email: ''
+        email: '',
+        diasAnticipacion: 30, // Días hacia adelante que se pueden reservar (por defecto 30)
+        tipoPago: 'total', // 'reserva' | 'total'
+        tipoReserva: 'porcentaje', // 'monto' | 'porcentaje' (solo si tipoPago es 'reserva')
+        valorReserva: 50 // Monto fijo o porcentaje según tipoReserva
     });
 
     useEffect(() => {
@@ -49,6 +55,16 @@ const AdminPredios = () => {
         });
     };
 
+    const handleLocationSelect = (location) => {
+        if (location && location.lat && location.lng) {
+            setFormData({
+                ...formData,
+                latitud: location.lat.toString(),
+                longitud: location.lng.toString()
+            });
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -58,6 +74,10 @@ const AdminPredios = () => {
                 ...formData,
                 latitud: formData.latitud ? parseFloat(formData.latitud) : null,
                 longitud: formData.longitud ? parseFloat(formData.longitud) : null,
+                diasAnticipacion: parseInt(formData.diasAnticipacion) || 30,
+                tipoPago: formData.tipoPago || 'total',
+                tipoReserva: formData.tipoPago === 'reserva' ? (formData.tipoReserva || 'porcentaje') : null,
+                valorReserva: formData.tipoPago === 'reserva' ? parseFloat(formData.valorReserva) || 0 : null,
                 creadoEn: editando ? editando.creadoEn : new Date(),
                 actualizadoEn: new Date()
             };
@@ -78,7 +98,11 @@ const AdminPredios = () => {
                 latitud: '',
                 longitud: '',
                 telefono: '',
-                email: ''
+                email: '',
+                diasAnticipacion: 30,
+                tipoPago: 'total',
+                tipoReserva: 'porcentaje',
+                valorReserva: 50
             });
             setMostrarForm(false);
             setEditando(null);
@@ -101,7 +125,11 @@ const AdminPredios = () => {
             latitud: predio.latitud?.toString() || '',
             longitud: predio.longitud?.toString() || '',
             telefono: predio.telefono || '',
-            email: predio.email || ''
+            email: predio.email || '',
+            diasAnticipacion: predio.diasAnticipacion || 30,
+            tipoPago: predio.tipoPago || 'total',
+            tipoReserva: predio.tipoReserva || 'porcentaje',
+            valorReserva: predio.valorReserva || 50
         });
         setMostrarForm(true);
     };
@@ -177,16 +205,24 @@ const AdminPredios = () => {
                                 required
                             />
                         </div>
-                        <div className="form-group">
-                            <label>Dirección *</label>
-                            <input
-                                type="text"
-                                name="direccion"
-                                value={formData.direccion}
-                                onChange={handleChange}
-                                placeholder="Calle y número"
-                                required
-                            />
+                        <div className="form-group form-group-full">
+                            {import.meta.env.VITE_GOOGLE_MAPS_API_KEY ? (
+                                <GoogleMapsInputSimple
+                                    value={formData.direccion}
+                                    onChange={handleChange}
+                                    onLocationSelect={handleLocationSelect}
+                                    placeholder="Buscar dirección o hacer clic en el mapa..."
+                                    label="Dirección"
+                                />
+                            ) : (
+                                <AddressInputSimple
+                                    value={formData.direccion}
+                                    onChange={handleChange}
+                                    onLocationSelect={handleLocationSelect}
+                                    placeholder="Ingresa la dirección completa..."
+                                    label="Dirección"
+                                />
+                            )}
                         </div>
                         <div className="form-group">
                             <label>Teléfono</label>
@@ -230,6 +266,74 @@ const AdminPredios = () => {
                                 placeholder="-58.381592"
                             />
                         </div>
+                        <div className="form-group">
+                            <label>Días de Anticipación para Reservas *</label>
+                            <input
+                                type="number"
+                                name="diasAnticipacion"
+                                value={formData.diasAnticipacion}
+                                onChange={handleChange}
+                                min="1"
+                                max="365"
+                                required
+                                placeholder="30"
+                            />
+                            <small className="form-hint">
+                                Cantidad de días hacia adelante que los usuarios pueden reservar (ej: 30 = hasta 30 días desde hoy)
+                            </small>
+                        </div>
+                        <div className="form-group form-group-full">
+                            <label>Tipo de Pago Requerido *</label>
+                            <select
+                                name="tipoPago"
+                                value={formData.tipoPago}
+                                onChange={handleChange}
+                                required
+                            >
+                                <option value="total">Pago Total de la Cancha</option>
+                                <option value="reserva">Solo Reserva</option>
+                            </select>
+                            <small className="form-hint">
+                                Si seleccionas "Solo Reserva", el usuario pagará solo una parte al crear el partido
+                            </small>
+                        </div>
+                        {formData.tipoPago === 'reserva' && (
+                            <>
+                                <div className="form-group">
+                                    <label>Tipo de Reserva *</label>
+                                    <select
+                                        name="tipoReserva"
+                                        value={formData.tipoReserva}
+                                        onChange={handleChange}
+                                        required
+                                    >
+                                        <option value="porcentaje">Porcentaje del Total</option>
+                                        <option value="monto">Monto Fijo</option>
+                                    </select>
+                                </div>
+                                <div className="form-group">
+                                    <label>
+                                        {formData.tipoReserva === 'porcentaje' ? 'Porcentaje de Reserva (%)' : 'Monto de Reserva ($)'} *
+                                    </label>
+                                    <input
+                                        type="number"
+                                        name="valorReserva"
+                                        value={formData.valorReserva}
+                                        onChange={handleChange}
+                                        min="0"
+                                        step={formData.tipoReserva === 'porcentaje' ? "1" : "0.01"}
+                                        max={formData.tipoReserva === 'porcentaje' ? "100" : undefined}
+                                        required
+                                        placeholder={formData.tipoReserva === 'porcentaje' ? "50" : "10000"}
+                                    />
+                                    <small className="form-hint">
+                                        {formData.tipoReserva === 'porcentaje' 
+                                            ? 'Porcentaje del precio total que se debe pagar como reserva (ej: 50 = 50%)'
+                                            : 'Monto fijo en pesos que se debe pagar como reserva'}
+                                    </small>
+                                </div>
+                            </>
+                        )}
                     </div>
                     <button type="submit" className="btn-submit" disabled={loading}>
                         {loading ? 'Guardando...' : editando ? 'Actualizar' : 'Crear'}
@@ -249,6 +353,12 @@ const AdminPredios = () => {
                                 <p><i className="fas fa-city"></i> {predio.ciudad}, {predio.provincia}</p>
                                 {predio.telefono && <p><i className="fas fa-phone"></i> {predio.telefono}</p>}
                                 {predio.email && <p><i className="fas fa-envelope"></i> {predio.email}</p>}
+                                <p><i className="fas fa-calendar-alt"></i> Reservas hasta {predio.diasAnticipacion || 30} días adelante</p>
+                                <p>
+                                    <i className="fas fa-money-bill-wave"></i> Pago: {predio.tipoPago === 'reserva' 
+                                        ? `Reserva ${predio.tipoReserva === 'porcentaje' ? `${predio.valorReserva || 50}%` : `$${predio.valorReserva || 0}`}`
+                                        : 'Total'}
+                                </p>
                                 <div className="predio-actions">
                                     <button onClick={() => handleEditar(predio)} className="btn-editar">
                                         Editar

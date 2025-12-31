@@ -1,3 +1,17 @@
+.predio-info-hint {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+    color: #1976d2;
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+.predio-info-hint i {
+    color: #1976d2;
+}
+
 .admin-canchas {
     max-width: 1200px;
     margin: 0 auto;
@@ -109,6 +123,17 @@
 .form-group small {
     color: #666;
     font-size: 0.85rem;
+}
+
+.form-group-full {
+    grid-column: 1 / -1;
+}
+
+.form-hint {
+    color: #999;
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-top: 5px;
 }
 
 .form-actions {
@@ -246,6 +271,133 @@
 
 .mensaje-inicial strong {
     color: #4CAF50;
+}
+
+/* Características dinámicas */
+.caracteristicas-container {
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.caracteristicas-list {
+    margin-bottom: 15px;
+    min-height: 50px;
+}
+
+.caracteristica-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background: white;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.caracteristica-nombre {
+    font-weight: bold;
+    color: #4CAF50;
+    min-width: 120px;
+}
+
+.caracteristica-valor {
+    flex: 1;
+    color: #333;
+}
+
+.btn-eliminar-caracteristica {
+    background: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background 0.2s;
+}
+
+.btn-eliminar-caracteristica:hover {
+    background: #d32f2f;
+}
+
+.sin-caracteristicas {
+    color: #999;
+    font-style: italic;
+    text-align: center;
+    padding: 15px;
+}
+
+.agregar-caracteristica {
+    border-top: 1px solid #ddd;
+    padding-top: 15px;
+}
+
+.caracteristica-inputs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+
+.input-caracteristica-nombre,
+.input-caracteristica-valor {
+    flex: 1;
+    min-width: 200px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.95rem;
+}
+
+.btn-agregar-caracteristica {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+}
+
+.btn-agregar-caracteristica:hover {
+    background-color: #45a049;
+}
+
+.btn-agregar-caracteristica i {
+    margin-right: 5px;
+}
+
+/* Características en la tarjeta de cancha */
+.cancha-caracteristicas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 10px 0;
+}
+
+.caracteristica-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    background: #e8f5e9;
+    color: #2e7d32;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    border: 1px solid #4CAF50;
+}
+
+.caracteristica-more {
+    display: inline-block;
+    padding: 4px 10px;
+    background: #f5f5f5;
+    color: #666;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-style: italic;
 }
 
 @media (max-width: 768px) {

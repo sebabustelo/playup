@@ -1,11 +1,37 @@
 .admin {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 20px;
 }
 
-.admin h1 {
+.admin-header-section {
     margin-bottom: 30px;
-    color: #333;
+}
+
+.admin-header-section h1 {
+    margin-bottom: 15px;
+    color: var(--text);
+}
+
+.admin-predios-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: rgba(30, 136, 229, 0.1);
+    border-left: 4px solid var(--primary-blue);
+    border-radius: 8px;
+    color: var(--primary-blue);
+    max-width: 600px;
+}
+
+.admin-predios-info i {
+    font-size: 1.2rem;
+}
+
+.admin-predios-info p {
+    margin: 0;
+    font-weight: 500;
 }
 
 .admin-menu {
@@ -15,35 +41,54 @@
 }
 
 .admin-card {
-    background: white;
+    position: relative;
+    background: var(--surface);
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
     text-decoration: none;
     color: inherit;
     text-align: center;
-    transition: transform 0.2s;
+    transition: all 0.3s;
+    border: 1px solid var(--border-light);
 }
 
 .admin-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 20px var(--shadow);
+    border-color: var(--primary-blue);
 }
 
 .admin-card i {
     font-size: 3rem;
-    color: #4CAF50;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-bottom: 20px;
 }
 
 .admin-card h3 {
-    color: #333;
+    color: var(--text);
     margin-bottom: 10px;
 }
 
 .admin-card p {
-    color: #666;
+    color: var(--text-light);
+    margin-bottom: 8px;
 }
 
-
-
-
+.admin-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--gradient-blue);
+    color: var(--text-on-dark);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px var(--shadow);
+}

@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Home from '@/pages/Home'
@@ -11,10 +11,18 @@ const AdminCanchas = lazy(() => import('@/pages/admin/AdminCanchas'))
 const AdminPrecios = lazy(() => import('@/pages/admin/AdminPrecios'))
 const AdminPromociones = lazy(() => import('@/pages/admin/AdminPromociones'))
 const AdminDeportes = lazy(() => import('@/pages/admin/AdminDeportes'))
-import BuscarCanchas from '@/pages/BuscarCanchas'
-import CrearPartido from '@/pages/CrearPartido'
-import MisPartidos from '@/pages/MisPartidos'
-import DetallePartido from '@/pages/DetallePartido'
+const AdminFranjasHorarias = lazy(() => import('@/pages/admin/AdminFranjasHorarias'))
+const AdminServicios = lazy(() => import('@/pages/admin/AdminServicios'))
+const AdminUsuarios = lazy(() => import('@/pages/admin/AdminUsuarios'))
+const AdminPartidos = lazy(() => import('@/pages/admin/AdminPartidos'))
+const CargarDatosEjemplo = lazy(() => import('@/pages/admin/CargarDatosEjemplo'))
+const BuscarCanchas = lazy(() => import('@/pages/BuscarCanchas'))
+const CrearPartido = lazy(() => import('@/pages/CrearPartido'))
+const MisPartidos = lazy(() => import('@/pages/MisPartidos'))
+const DetallePartido = lazy(() => import('@/pages/DetallePartido'))
+const PagoExitoso = lazy(() => import('@/pages/PagoExitoso'))
+const PagoError = lazy(() => import('@/pages/PagoError'))
+const PagoPendiente = lazy(() => import('@/pages/PagoPendiente'))
 import RutasProtegidas from '@/auth/RutasProtegidas'
 import { AuthProvider, useAuth, ToastProvider, useToast } from '@/context'
 import ToastContainer from '@/components/ToastContainer'
@@ -22,17 +30,57 @@ import ErrorBoundary from '@/components/ErrorBoundary'
 import ScrollToTop from '@/components/ScrollToTop'
 import Header from '@/components/estaticos/Header'
 import Footer from '@/components/estaticos/Footer'
+import LoadingSpinner from '@/components/LoadingSpinner'
 import './App.css'
 
-const queryClient = new QueryClient()
+// Configuración optimizada de React Query para escalabilidad
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000,        // 5 minutos - datos frescos
+      cacheTime: 10 * 60 * 1000,       // 10 minutos - mantener en caché
+      refetchOnWindowFocus: false,      // No refetch al cambiar de ventana
+      refetchOnMount: true,             // Refetch al montar componente
+      retry: 1,                         // Solo 1 reintento en caso de error
+      retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
+    },
+    mutations: {
+      retry: 0,                         // No reintentar mutaciones
+    },
+  },
+})
+
+// Inicializar MercadoPago con la Public Key (solo si el SDK está disponible)
+const initializeMercadoPago = async () => {
+  const publicKey = import.meta.env.VITE_MERCADOPAGO_PUBLIC_KEY;
+  if (!publicKey) {
+    console.warn('MercadoPago Public Key no configurada');
+    return;
+  }
+
+  try {
+    const mercadoPagoModule = await import('@mercadopago/sdk-react');
+    if (mercadoPagoModule.initMercadoPago) {
+      mercadoPagoModule.initMercadoPago(publicKey);
+      console.log('MercadoPago SDK inicializado correctamente');
+    }
+  } catch (error) {
+    console.warn('SDK de MercadoPago no disponible. Ejecuta: npm install @mercadopago/sdk-react');
+    console.warn('El sistema usará redirección directa a MercadoPago como alternativa');
+  }
+};
 
 function App() {
+  useEffect(() => {
+    initializeMercadoPago();
+  }, []);
+
   return (
     <Router>
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
           <ToastProvider>
-            <Suspense fallback={<div style={{padding:16}}>Cargando…</div>}>
+            <Suspense fallback={<LoadingSpinner size="large" />}>
               <ErrorBoundary>
                 <AppRoutes />
               </ErrorBoundary>
@@ -71,8 +119,23 @@ function AppRoutes() {
               <DetallePartido />
             </RutasProtegidas>
           } />
+          <Route path='/partido/:id/pago-exitoso' element={
+            <RutasProtegidas isAuthenticated={!!user}>
+              <PagoExitoso />
+            </RutasProtegidas>
+          } />
+          <Route path='/partido/:id/pago-error' element={
+            <RutasProtegidas isAuthenticated={!!user}>
+              <PagoError />
+            </RutasProtegidas>
+          } />
+          <Route path='/partido/:id/pago-pendiente' element={
+            <RutasProtegidas isAuthenticated={!!user}>
+              <PagoPendiente />
+            </RutasProtegidas>
+          } />
           <Route path='/admin' element={
-            <RutasProtegidas isAuthenticated={!!user} roles={['admin']}>
+            <RutasProtegidas isAuthenticated={!!user} roles={['admin', 'admin_predios']}>
               <Admin />
             </RutasProtegidas>
           } />
@@ -82,12 +145,12 @@ function AppRoutes() {
             </RutasProtegidas>
           } />
           <Route path='/admin/canchas' element={
-            <RutasProtegidas isAuthenticated={!!user} roles={['admin']}>
+            <RutasProtegidas isAuthenticated={!!user} roles={['admin', 'admin_predios']}>
               <AdminCanchas />
             </RutasProtegidas>
           } />
           <Route path='/admin/precios' element={
-            <RutasProtegidas isAuthenticated={!!user} roles={['admin']}>
+            <RutasProtegidas isAuthenticated={!!user} roles={['admin', 'admin_predios']}>
               <AdminPrecios />
             </RutasProtegidas>
           } />
@@ -99,6 +162,31 @@ function AppRoutes() {
           <Route path='/admin/deportes' element={
             <RutasProtegidas isAuthenticated={!!user} roles={['admin']}>
               <AdminDeportes />
+            </RutasProtegidas>
+          } />
+          <Route path='/admin/franjas-horarias' element={
+            <RutasProtegidas isAuthenticated={!!user} roles={['admin']}>
+              <AdminFranjasHorarias />
+            </RutasProtegidas>
+          } />
+          <Route path='/admin/servicios' element={
+            <RutasProtegidas isAuthenticated={!!user} roles={['admin']}>
+              <AdminServicios />
+            </RutasProtegidas>
+          } />
+          <Route path='/admin/usuarios' element={
+            <RutasProtegidas isAuthenticated={!!user} roles={['admin']}>
+              <AdminUsuarios />
+            </RutasProtegidas>
+          } />
+          <Route path='/admin/partidos' element={
+            <RutasProtegidas isAuthenticated={!!user} roles={['admin', 'admin_predios']}>
+              <AdminPartidos />
+            </RutasProtegidas>
+          } />
+          <Route path='/admin/cargar-datos' element={
+            <RutasProtegidas isAuthenticated={!!user} roles={['admin']}>
+              <CargarDatosEjemplo />
             </RutasProtegidas>
           } />
           <Route path='/login' element={<IniciarSesion />} />

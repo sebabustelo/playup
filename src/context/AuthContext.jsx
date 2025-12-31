@@ -10,10 +10,12 @@ import {
 } from 'firebase/auth';
 import { auth, googleProvider, facebookProvider } from '../firebase';
 import usersData from '../data/adminUsuarios.json';
+import { crearOActualizarUsuario, obtenerUsuario } from '../services/usuariosService';
+import { COLLECTIONS, ROLES } from '../utils/constants';
 
 export const AuthContext = createContext();
 
-const buildUserFromFirebase = (firebaseUser) => {
+const buildUserFromFirebase = async (firebaseUser) => {
     if (!firebaseUser) return null;
 
     const displayName =
@@ -21,14 +23,45 @@ const buildUserFromFirebase = (firebaseUser) => {
         firebaseUser.email?.split('@')[0] ||
         'Usuario PlayUp';
 
+    // Intentar obtener usuario de Firestore
+    let userFromFirestore = null;
+    try {
+        userFromFirestore = await obtenerUsuario(firebaseUser.uid);
+    } catch (error) {
+        console.error('Error obteniendo usuario de Firestore:', error);
+    }
+
+    // Si existe en Firestore, usar esos datos
+    if (userFromFirestore) {
+        const roleObjects = (userFromFirestore.roles || []).map(role => {
+            if (typeof role === 'string') {
+                return { name: role, display_name: role };
+            }
+            return role;
+        });
+
+        return {
+            id: firebaseUser.uid,
+            nombre: userFromFirestore.nombre || displayName,
+            email: firebaseUser.email,
+            roles: roleObjects,
+            roleNames: roleObjects.map((role) => role.name),
+            telefono: userFromFirestore.telefono || firebaseUser.phoneNumber || '',
+            avatar: userFromFirestore.avatar || firebaseUser.photoURL || '',
+            provider: firebaseUser.providerData[0]?.providerId || 'firebase',
+            prediosAsignados: userFromFirestore.prediosAsignados || []
+        };
+    }
+
+    // Si no existe, crear usuario con rol cliente por defecto
     const defaultRoles = [
         {
-            name: 'usuario',
-            display_name: 'Usuario'
+            name: ROLES.CLIENTE,
+            display_name: 'Cliente'
         }
     ];
 
-    return {
+    const newUser = {
         id: firebaseUser.uid,
         nombre: displayName,
         email: firebaseUser.email,
@@ -36,8 +69,27 @@ const buildUserFromFirebase = (firebaseUser) => {
         roleNames: defaultRoles.map((role) => role.name),
         telefono: firebaseUser.phoneNumber || '',
         avatar: firebaseUser.photoURL || '',
-        provider: firebaseUser.providerData[0]?.providerId || 'firebase'
+        provider: firebaseUser.providerData[0]?.providerId || 'firebase',
+        prediosAsignados: []
     };
+
+    // Crear usuario en Firestore
+    try {
+        await crearOActualizarUsuario({
+            id: firebaseUser.uid,
+            nombre: displayName,
+            email: firebaseUser.email,
+            roles: defaultRoles,
+            telefono: firebaseUser.phoneNumber || '',
+            avatar: firebaseUser.photoURL || '',
+            provider: firebaseUser.providerData[0]?.providerId || 'firebase',
+            creadoEn: new Date()
+        });
+    } catch (error) {
+        console.error('Error creando usuario en Firestore:', error);
+    }
+
+    return newUser;
 };
 
 export const AuthProvider = ({ children }) => {
@@ -61,8 +113,13 @@ export const AuthProvider = ({ children }) => {
         }
 
         // Si no hay usuario local, verificar Firebase
-        const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-            setUser(buildUserFromFirebase(firebaseUser));
+        const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+            if (firebaseUser) {
+                const userData = await buildUserFromFirebase(firebaseUser);
+                setUser(userData);
+            } else {
+                setUser(null);
+            }
             setLoading(false);
         });
 
@@ -75,7 +132,8 @@ export const AuthProvider = ({ children }) => {
             if (nombre) {
                 await updateProfile(userCredential.user, { displayName: nombre });
             }
-            return { success: true, user: buildUserFromFirebase(userCredential.user) };
+            const user = await buildUserFromFirebase(userCredential.user);
+            return { success: true, user };
         } catch (error) {
             return { success: false, error: error.message };
         }
@@ -146,7 +204,8 @@ export const AuthProvider = ({ children }) => {
 
             // Si no encuentra en local, intentar con Firebase
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            return { success: true, user: buildUserFromFirebase(userCredential.user) };
+            const user = await buildUserFromFirebase(userCredential.user);
+            return { success: true, user };
         } catch (error) {
             return { success: false, error: error.message };
         }
@@ -155,16 +214,31 @@ export const AuthProvider = ({ children }) => {
     const loginWithGoogle = async () => {
         try {
             const result = await signInWithPopup(auth, googleProvider);
-            return { success: true, user: buildUserFromFirebase(result.user) };
+            const user = await buildUserFromFirebase(result.user);
+            // Guardar usuario de Google en localStorage para mantener sesión
+            localStorage.setItem("user", JSON.stringify(user));
+            setUser(user);
+            return { success: true, user };
         } catch (error) {
-            return { success: false, error: error.message };
+            console.error('Error en login con Google:', error);
+            // Proporcionar mensajes de error más descriptivos
+            let errorMessage = error.message;
+            if (error.code === 'auth/popup-closed-by-user') {
+                errorMessage = 'El popup fue cerrado antes de completar el inicio de sesión';
+            } else if (error.code === 'auth/popup-blocked') {
+                errorMessage = 'El popup fue bloqueado. Por favor, permite popups para este sitio';
+            } else if (error.code === 'auth/account-exists-with-different-credential') {
+                errorMessage = 'Ya existe una cuenta con este email usando otro método de inicio de sesión';
+            }
+            return { success: false, error: errorMessage };
         }
     };
 
     const loginWithFacebook = async () => {
         try {
             const result = await signInWithPopup(auth, facebookProvider);
-            return { success: true, user: buildUserFromFirebase(result.user) };
+            const user = await buildUserFromFirebase(result.user);
+            return { success: true, user };
         } catch (error) {
             return { success: false, error: error.message };
         }

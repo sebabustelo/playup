@@ -11,7 +11,7 @@
 }
 
 .partido-header h1 {
-    color: #4CAF50;
+    color: var(--primary-blue);
 }
 
 .estado {
@@ -22,18 +22,18 @@
 }
 
 .estado-activo {
-    background-color: #4CAF50;
-    color: white;
+    background: var(--gradient-green);
+    color: var(--text);
 }
 
 .estado-completado {
-    background-color: #2196F3;
-    color: white;
+    background: var(--gradient-blue);
+    color: var(--text-on-dark);
 }
 
 .estado-cancelado {
-    background-color: #f44336;
-    color: white;
+    background-color: var(--error);
+    color: var(--text-on-dark);
 }
 
 .partido-info {
@@ -45,33 +45,58 @@
 
 .info-card,
 .agregar-jugador-card {
-    background: white;
+    background: var(--surface);
     padding: 25px;
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--border-light);
 }
 
 .info-card h3,
 .agregar-jugador-card h3 {
-    color: #4CAF50;
+    color: var(--primary-blue);
     margin-bottom: 20px;
 }
 
 .info-card p {
     margin: 12px 0;
-    color: #666;
+    color: var(--text-light);
 }
 
 .info-card i {
     margin-right: 10px;
-    color: #4CAF50;
+    color: var(--primary-green);
 }
 
 .descripcion {
     margin-top: 20px !important;
     padding-top: 20px;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border);
     font-style: italic;
+}
+
+.telegram-link {
+    margin-top: 15px;
+    padding: 10px;
+    background: rgba(30, 136, 229, 0.1);
+    border-radius: 5px;
+    border: 1px solid var(--primary-blue);
+}
+
+.telegram-link i {
+    color: var(--primary-blue);
+    margin-right: 8px;
+    font-size: 1.2rem;
+}
+
+.telegram-link a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.telegram-link a:hover {
+    text-decoration: underline;
 }
 
 .agregar-jugador-card form {
@@ -82,29 +107,41 @@
 
 .agregar-jugador-card input {
     padding: 12px;
-    border: 1px solid #ddd;
+    border: 2px solid var(--border);
     border-radius: 5px;
     font-size: 1rem;
+    background: var(--surface);
+    color: var(--text);
+    transition: all 0.3s;
+}
+
+.agregar-jugador-card input:focus {
+    border-color: var(--primary-blue);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.1);
 }
 
 .monto-info {
-    color: #4CAF50;
+    color: var(--primary-green);
     font-weight: bold;
     margin: 0 !important;
 }
 
 .agregar-jugador-card button {
     padding: 12px;
-    background-color: #4CAF50;
-    color: white;
+    background: var(--gradient-primary);
+    color: var(--text);
     border: none;
     border-radius: 5px;
-    font-weight: bold;
+    font-weight: 600;
     cursor: pointer;
+    transition: all 0.3s;
 }
 
 .agregar-jugador-card button:hover {
-    background-color: #45a049;
+    background: linear-gradient(135deg, var(--primary-blue-light) 0%, var(--primary-green-light) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow-accent);
 }
 
 .agregar-jugador-card button:disabled {
@@ -113,14 +150,15 @@
 }
 
 .jugadores-section {
-    background: white;
+    background: var(--surface);
     padding: 25px;
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--border-light);
 }
 
 .jugadores-section h2 {
-    color: #333;
+    color: var(--text);
     margin-bottom: 20px;
 }
 
@@ -131,32 +169,348 @@
 }
 
 .jugador-card {
-    background: #f5f5f5;
+    background: var(--surface-light);
     padding: 15px;
     border-radius: 8px;
-    border-left: 4px solid #4CAF50;
+    border-left: 4px solid var(--primary-green);
+    border: 1px solid var(--border-light);
 }
 
 .jugador-card h4 {
-    color: #333;
+    color: var(--text);
     margin-bottom: 10px;
 }
 
 .jugador-card p {
     margin: 5px 0;
-    color: #666;
+    color: var(--text-light);
     font-size: 0.9rem;
 }
 
 .jugador-card i {
     margin-right: 8px;
-    color: #4CAF50;
+    color: var(--primary-green);
 }
 
 .jugador-card .monto {
     font-weight: bold;
-    color: #4CAF50 !important;
+    color: var(--primary-green) !important;
     margin-top: 10px !important;
+}
+
+.jugador-card .estado-jugador {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.estado-jugador.estado-invitado {
+    background: linear-gradient(135deg, var(--basket-orange) 0%, var(--accent-orange-dark) 100%);
+    color: var(--text-on-dark);
+}
+
+.estado-jugador.estado-confirmado {
+    background: var(--gradient-green);
+    color: var(--text);
+}
+
+.estado-jugador.estado-rechazado {
+    background-color: var(--error);
+    color: var(--text-on-dark);
+}
+
+.monto-jugador {
+    font-weight: bold;
+    color: var(--primary-green) !important;
+    margin-top: 8px !important;
+}
+
+.pagos-section,
+.servicios-section {
+    background: var(--surface);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--border-light);
+    margin-bottom: 30px;
+}
+
+.pagos-section h2,
+.servicios-section h2 {
+    color: var(--text);
+    margin-bottom: 20px;
+}
+
+.btn-agregar {
+    padding: 10px 20px;
+    background: var(--gradient-blue);
+    color: var(--text-on-dark);
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-agregar:hover {
+    background: linear-gradient(135deg, var(--primary-blue-light) 0%, var(--primary-blue-dark) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.form-pago,
+.form-servicio {
+    background: var(--surface-light);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-light);
+}
+
+.form-pago .form-group,
+.form-servicio .form-group {
+    margin-bottom: 15px;
+}
+
+.form-pago label,
+.form-servicio label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--text);
+}
+
+.form-pago input,
+.form-pago select,
+.form-servicio select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid var(--border);
+    border-radius: 5px;
+    font-size: 1rem;
+    background: var(--surface);
+    color: var(--text);
+    transition: all 0.3s;
+}
+
+.form-pago input:focus,
+.form-pago select:focus,
+.form-servicio select:focus {
+    border-color: var(--primary-blue);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.1);
+}
+
+.btn-submit {
+    padding: 12px 24px;
+    background: var(--gradient-primary);
+    color: var(--text);
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s;
+}
+
+.btn-submit:hover {
+    background: linear-gradient(135deg, var(--primary-blue-light) 0%, var(--primary-green-light) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow-accent);
+}
+
+.btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.pagos-list,
+.servicios-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.pago-card,
+.servicio-card {
+    background: #f5f5f5;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #2196F3;
+}
+
+.pago-card h4,
+.servicio-card h4 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.pago-card p,
+.servicio-card p {
+    margin: 5px 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.estado-pago {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.estado-pago.estado-pendiente {
+    background-color: #ff9800;
+    color: white;
+}
+
+.estado-pago.estado-pagado {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.estado-pago.estado-rechazado {
+    background-color: #f44336;
+    color: white;
+}
+
+.btn-marcar-pagado {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.btn-marcar-pagado:hover {
+    background-color: #45a049;
+}
+
+.estados-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.estado-reserva {
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.estado-reserva-reservada {
+    background: rgba(247, 147, 30, 0.15);
+    color: var(--basket-orange);
+    border: 1px solid var(--basket-orange);
+}
+
+.estado-reserva-ocupada {
+    background: rgba(30, 136, 229, 0.15);
+    color: var(--primary-blue);
+    border: 1px solid var(--primary-blue);
+}
+
+.estado-reserva-disponible {
+    background: rgba(126, 217, 87, 0.15);
+    color: var(--primary-green);
+    border: 1px solid var(--primary-green);
+}
+
+.estado-reserva-cancelada {
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--error);
+    border: 1px solid var(--error);
+}
+
+.estado-reserva-bloqueada {
+    background: var(--surface-light);
+    color: var(--text-light);
+    border: 1px solid var(--border);
+}
+
+.reserva-info {
+    margin-top: 20px;
+    padding: 15px;
+    background: var(--surface-light);
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-blue);
+    border: 1px solid var(--border-light);
+}
+
+.reserva-info h4 {
+    margin: 0 0 10px 0;
+    color: var(--text);
+}
+
+.estado-reserva-detalle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    margin: 8px 0;
+}
+
+.reserva-motivo {
+    margin-top: 8px;
+    color: var(--text-light);
+    font-style: italic;
+}
+
+.acciones-reserva {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn-confirmar-reserva,
+.btn-liberar-reserva {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s;
+}
+
+.btn-confirmar-reserva {
+    background: var(--gradient-blue);
+    color: var(--text-on-dark);
+}
+
+.btn-confirmar-reserva:hover {
+    background: linear-gradient(135deg, var(--primary-blue-light) 0%, var(--primary-blue-dark) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.btn-liberar-reserva {
+    background: var(--gradient-green);
+    color: var(--text);
+}
+
+.btn-liberar-reserva:hover {
+    background: linear-gradient(135deg, var(--primary-green-light) 0%, var(--primary-green-dark) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow-accent);
 }
 
 @media (max-width: 768px) {
@@ -168,6 +522,16 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
+    }
+
+    .pagos-list,
+    .servicios-list {
+        grid-template-columns: 1fr;
+    }
+
+    .estados-container {
+        flex-direction: column;
+        align-items: flex-start;
     }
 }
 

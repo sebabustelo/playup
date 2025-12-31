@@ -37,14 +37,33 @@ const IniciarSesion = () => {
 
     const handleGoogleLogin = async () => {
         setLoading(true);
-        const resultado = await loginWithGoogle();
-        if (resultado.success) {
-            addToast('Sesión iniciada con Google', 'success');
-            navigate('/');
-        } else {
-            addToast(resultado.error || 'Error al iniciar sesión', 'error');
+        try {
+            const resultado = await loginWithGoogle();
+            if (resultado.success) {
+                addToast('Sesión iniciada con Google exitosamente', 'success');
+                navigate('/');
+            } else {
+                // Manejar errores específicos
+                let errorMessage = 'Error al iniciar sesión con Google';
+                if (resultado.error) {
+                    if (resultado.error.includes('popup-closed-by-user')) {
+                        errorMessage = 'Inicio de sesión cancelado';
+                    } else if (resultado.error.includes('auth/account-exists-with-different-credential')) {
+                        errorMessage = 'Ya existe una cuenta con este email usando otro método de inicio de sesión';
+                    } else if (resultado.error.includes('auth/popup-blocked')) {
+                        errorMessage = 'El popup fue bloqueado. Por favor, permite popups para este sitio';
+                    } else {
+                        errorMessage = resultado.error;
+                    }
+                }
+                addToast(errorMessage, 'error');
+            }
+        } catch (error) {
+            console.error('Error en login con Google:', error);
+            addToast('Error inesperado al iniciar sesión con Google', 'error');
+        } finally {
+            setLoading(false);
         }
-        setLoading(false);
     };
 
     const handleFacebookLogin = async () => {

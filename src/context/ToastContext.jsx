@@ -4,9 +4,11 @@ export const ToastContext = createContext();
 
 export const ToastProvider = ({ children }) => {
     const [toasts, setToasts] = useState([]);
+    const toastIdCounter = React.useRef(0);
 
     const addToast = useCallback((message, type = 'info') => {
-        const id = Date.now();
+        // Usar timestamp + contador para garantizar unicidad
+        const id = `${Date.now()}-${++toastIdCounter.current}`;
         const newToast = { id, message, type };
         setToasts((prev) => [...prev, newToast]);
         

@@ -20,6 +20,12 @@ Aplicación web para organizar partidos de fútbol, pádel y otros deportes. Per
 - React Query
 - date-fns
 
+## 📚 Documentación
+
+Toda la documentación del proyecto está organizada en la carpeta [`docs/`](./docs/). 
+
+Ver el [índice de documentación](./docs/README.md) para acceder a todas las guías de configuración.
+
 ## Instalación
 
 1. Clona el repositorio o navega a la carpeta del proyecto:
@@ -33,19 +39,33 @@ npm install
 ```
 
 3. Configura Firebase:
-   - Crea un proyecto en [Firebase Console](https://console.firebase.google.com/)
-   - Obtén las credenciales de configuración
-   - Edita `src/firebase.js` y reemplaza los valores con tus credenciales:
-   ```javascript
-   const firebaseConfig = {
-     apiKey: "TU_API_KEY",
-     authDomain: "TU_AUTH_DOMAIN",
-     projectId: "TU_PROJECT_ID",
-     storageBucket: "TU_STORAGE_BUCKET",
-     messagingSenderId: "TU_MESSAGING_SENDER_ID",
-     appId: "TU_APP_ID"
-   };
+   
+   **Opción A: Usando Variables de Entorno (Recomendado)**
+   
+   a. Crea un archivo `.env` en la raíz del proyecto:
+   ```bash
+   touch .env
    ```
+   
+   b. Agrega tus credenciales de Firebase al archivo `.env`:
+   ```env
+   VITE_FIREBASE_API_KEY=tu_api_key
+   VITE_FIREBASE_AUTH_DOMAIN=tu_project_id.firebaseapp.com
+   VITE_FIREBASE_PROJECT_ID=tu_project_id
+   VITE_FIREBASE_STORAGE_BUCKET=tu_project_id.appspot.com
+   VITE_FIREBASE_MESSAGING_SENDER_ID=tu_messaging_sender_id
+   VITE_FIREBASE_APP_ID=tu_app_id
+   ```
+   
+   c. Obtén estas credenciales desde [Firebase Console](https://console.firebase.google.com/):
+      - Ve a tu proyecto → Configuración del proyecto → Tus apps → Web
+      - Copia los valores del objeto `firebaseConfig`
+   
+   **Opción B: Editar directamente `src/firebase.js`**
+   
+   Edita el archivo y reemplaza los valores `YOUR_*` con tus credenciales.
+   
+   📖 **Ver instrucciones detalladas en [`docs/CONFIGURACION_FIREBASE.md`](./docs/CONFIGURACION_FIREBASE.md)**
 
 4. Configura las reglas de Firestore:
    - Ve a Firebase Console > Firestore Database > Rules
