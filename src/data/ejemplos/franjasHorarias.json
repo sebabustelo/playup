@@ -1,0 +1,84 @@
+[
+  {
+    "horaInicio": "08:00",
+    "horaFin": "09:00",
+    "activa": true
+  },
+  {
+    "horaInicio": "09:00",
+    "horaFin": "10:00",
+    "activa": true
+  },
+  {
+    "horaInicio": "10:00",
+    "horaFin": "11:00",
+    "activa": true
+  },
+  {
+    "horaInicio": "11:00",
+    "horaFin": "12:00",
+    "activa": true
+  },
+  {
+    "horaInicio": "12:00",
+    "horaFin": "13:00",
+    "activa": true
+  },
+  {
+    "horaInicio": "13:00",
+    "horaFin": "14:00",
+    "activa": true
+  },
+  {
+    "horaInicio": "14:00",
+    "horaFin": "15:00",
+    "activa": true
+  },
+  {
+    "horaInicio": "15:00",
+    "horaFin": "16:00",
+    "activa": true
+  },
+  {
+    "horaInicio": "16:00",
+    "horaFin": "17:00",
+    "activa": true
+  },
+  {
+    "horaInicio": "17:00",
+    "horaFin": "18:00",
+    "activa": true
+  },
+  {
+    "horaInicio": "18:00",
+    "horaFin": "19:00",
+    "activa": true
+  },
+  {
+    "horaInicio": "19:00",
+    "horaFin": "20:00",
+    "activa": true
+  },
+  {
+    "horaInicio": "20:00",
+    "horaFin": "21:00",
+    "activa": true
+  },
+  {
+    "horaInicio": "21:00",
+    "horaFin": "22:00",
+    "activa": true
+  },
+  {
+    "horaInicio": "22:00",
+    "horaFin": "23:00",
+    "activa": true
+  },
+  {
+    "horaInicio": "23:00",
+    "horaFin": "24:00",
+    "activa": true
+  }
+]
+
+

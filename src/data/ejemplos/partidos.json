@@ -1,0 +1,55 @@
+[
+  {
+    "canchaId": "cancha_1",
+    "canchaNombre": "Cancha 1 - Predio Futbol Capital",
+    "canchaDireccion": "Av. Corrientes 1234, Capital Federal",
+    "creadorId": "usuario_1",
+    "creadorNombre": "Juan Pérez",
+    "fecha": "2024-12-20",
+    "hora": "19:00",
+    "horaFin": "20:00",
+    "tipo": "5",
+    "precioTotal": 5000,
+    "precioPorJugador": 500,
+    "estado": "pendiente",
+    "descripcion": "Partido amistoso, todos bienvenidos",
+    "jugadoresIds": [],
+    "grabacion": false
+  },
+  {
+    "canchaId": "cancha_2",
+    "canchaNombre": "Cancha 2 - Predio Futbol Capital",
+    "canchaDireccion": "Av. Corrientes 1234, Capital Federal",
+    "creadorId": "usuario_2",
+    "creadorNombre": "María González",
+    "fecha": "2024-12-21",
+    "hora": "20:00",
+    "horaFin": "21:00",
+    "tipo": "5",
+    "precioTotal": 5500,
+    "precioPorJugador": 550,
+    "estado": "confirmado",
+    "descripcion": "Partido competitivo",
+    "jugadoresIds": ["usuario_3", "usuario_4"],
+    "grabacion": true
+  },
+  {
+    "canchaId": "cancha_8",
+    "canchaNombre": "Cancha 8 - Predio Futbol Capital",
+    "canchaDireccion": "Av. Corrientes 1234, Capital Federal",
+    "creadorId": "usuario_1",
+    "creadorNombre": "Juan Pérez",
+    "fecha": "2024-12-22",
+    "hora": "18:00",
+    "horaFin": "19:00",
+    "tipo": "8",
+    "precioTotal": 8000,
+    "precioPorJugador": 500,
+    "estado": "pendiente",
+    "descripcion": "Partido de fútbol 8",
+    "jugadoresIds": [],
+    "grabacion": false
+  }
+]
+
+

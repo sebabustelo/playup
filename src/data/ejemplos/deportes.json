@@ -1,0 +1,24 @@
+[
+  {
+    "nombre": "Fútbol",
+    "tipos": ["5", "7", "8", "11"],
+    "activo": true
+  },
+  {
+    "nombre": "Pádel",
+    "tipos": ["doble", "individual"],
+    "activo": true
+  },
+  {
+    "nombre": "Tenis",
+    "tipos": ["individual", "doble"],
+    "activo": true
+  },
+  {
+    "nombre": "Básquet",
+    "tipos": ["3x3", "5x5"],
+    "activo": true
+  }
+]
+
+

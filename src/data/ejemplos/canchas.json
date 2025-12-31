@@ -1,0 +1,213 @@
+[
+  {
+    "predioId": "predio_capital_federal",
+    "nombre": "Cancha 1",
+    "deporte": "futbol",
+    "tipo": "5",
+    "tipos": ["5"],
+    "ciudad": "Capital Federal",
+    "direccion": "Av. Corrientes 1234",
+    "activa": true,
+    "precioPorHora": 5000
+  },
+  {
+    "predioId": "predio_capital_federal",
+    "nombre": "Cancha 2",
+    "deporte": "futbol",
+    "tipo": "5",
+    "tipos": ["5"],
+    "ciudad": "Capital Federal",
+    "direccion": "Av. Corrientes 1234",
+    "activa": true,
+    "precioPorHora": 5000
+  },
+  {
+    "predioId": "predio_capital_federal",
+    "nombre": "Cancha 3",
+    "deporte": "futbol",
+    "tipo": "5",
+    "tipos": ["5"],
+    "ciudad": "Capital Federal",
+    "direccion": "Av. Corrientes 1234",
+    "activa": true,
+    "precioPorHora": 5000
+  },
+  {
+    "predioId": "predio_capital_federal",
+    "nombre": "Cancha 4",
+    "deporte": "futbol",
+    "tipo": "5",
+    "tipos": ["5"],
+    "ciudad": "Capital Federal",
+    "direccion": "Av. Corrientes 1234",
+    "activa": true,
+    "precioPorHora": 5000
+  },
+  {
+    "predioId": "predio_capital_federal",
+    "nombre": "Cancha 5",
+    "deporte": "futbol",
+    "tipo": "5",
+    "tipos": ["5"],
+    "ciudad": "Capital Federal",
+    "direccion": "Av. Corrientes 1234",
+    "activa": true,
+    "precioPorHora": 5000
+  },
+  {
+    "predioId": "predio_capital_federal",
+    "nombre": "Cancha 8",
+    "deporte": "futbol",
+    "tipo": "8",
+    "tipos": ["8"],
+    "ciudad": "Capital Federal",
+    "direccion": "Av. Corrientes 1234",
+    "activa": true,
+    "precioPorHora": 8000
+  },
+  {
+    "predioId": "predio_capital_federal",
+    "nombre": "Padel 1",
+    "deporte": "padel",
+    "tipo": "doble",
+    "tipos": ["doble"],
+    "ciudad": "Capital Federal",
+    "direccion": "Av. Corrientes 1234",
+    "activa": true,
+    "precioPorHora": 6000
+  },
+  {
+    "predioId": "predio_capital_federal",
+    "nombre": "Padel 2",
+    "deporte": "padel",
+    "tipo": "doble",
+    "tipos": ["doble"],
+    "ciudad": "Capital Federal",
+    "direccion": "Av. Corrientes 1234",
+    "activa": true,
+    "precioPorHora": 6000
+  },
+  {
+    "predioId": "predio_capital_federal",
+    "nombre": "Padel 3",
+    "deporte": "padel",
+    "tipo": "doble",
+    "tipos": ["doble"],
+    "ciudad": "Capital Federal",
+    "direccion": "Av. Corrientes 1234",
+    "activa": true,
+    "precioPorHora": 6000
+  },
+  {
+    "predioId": "predio_villa_crespo",
+    "nombre": "Cancha 1",
+    "deporte": "futbol",
+    "tipo": "5",
+    "tipos": ["5"],
+    "ciudad": "Villa Crespo",
+    "direccion": "Av. Scalabrini Ortiz 2345",
+    "activa": true,
+    "precioPorHora": 4500
+  },
+  {
+    "predioId": "predio_villa_crespo",
+    "nombre": "Cancha 2",
+    "deporte": "futbol",
+    "tipo": "5",
+    "tipos": ["5"],
+    "ciudad": "Villa Crespo",
+    "direccion": "Av. Scalabrini Ortiz 2345",
+    "activa": true,
+    "precioPorHora": 4500
+  },
+  {
+    "predioId": "predio_serrano_corner",
+    "nombre": "Cancha 1",
+    "deporte": "futbol",
+    "tipo": "5",
+    "tipos": ["5"],
+    "ciudad": "Capital Federal",
+    "direccion": "Serrano 1234",
+    "activa": true,
+    "precioPorHora": 5500
+  },
+  {
+    "predioId": "predio_serrano_corner",
+    "nombre": "Cancha 2",
+    "deporte": "futbol",
+    "tipo": "5",
+    "tipos": ["5"],
+    "ciudad": "Capital Federal",
+    "direccion": "Serrano 1234",
+    "activa": true,
+    "precioPorHora": 6000
+  },
+  {
+    "predioId": "predio_serrano_corner",
+    "nombre": "Cancha 3",
+    "deporte": "futbol",
+    "tipo": "5",
+    "tipos": ["5"],
+    "ciudad": "Capital Federal",
+    "direccion": "Serrano 1234",
+    "activa": true,
+    "precioPorHora": 6500
+  },
+  {
+    "predioId": "predio_serrano_corner",
+    "nombre": "Cancha 4",
+    "deporte": "futbol",
+    "tipo": "5",
+    "tipos": ["5"],
+    "ciudad": "Capital Federal",
+    "direccion": "Serrano 1234",
+    "activa": true,
+    "precioPorHora": 7000
+  },
+  {
+    "predioId": "predio_serrano_corner",
+    "nombre": "Cancha 5",
+    "deporte": "futbol",
+    "tipo": "5",
+    "tipos": ["5"],
+    "ciudad": "Capital Federal",
+    "direccion": "Serrano 1234",
+    "activa": true,
+    "precioPorHora": 5500
+  },
+  {
+    "predioId": "predio_serrano_corner",
+    "nombre": "Cancha 6",
+    "deporte": "futbol",
+    "tipo": "5",
+    "tipos": ["5"],
+    "ciudad": "Capital Federal",
+    "direccion": "Serrano 1234",
+    "activa": true,
+    "precioPorHora": 6000
+  },
+  {
+    "predioId": "predio_serrano_corner",
+    "nombre": "Cancha 7",
+    "deporte": "futbol",
+    "tipo": "5",
+    "tipos": ["5"],
+    "ciudad": "Capital Federal",
+    "direccion": "Serrano 1234",
+    "activa": true,
+    "precioPorHora": 6500
+  },
+  {
+    "predioId": "predio_serrano_corner",
+    "nombre": "Cancha 8",
+    "deporte": "futbol",
+    "tipo": "5",
+    "tipos": ["5"],
+    "ciudad": "Capital Federal",
+    "direccion": "Serrano 1234",
+    "activa": true,
+    "precioPorHora": 7000
+  }
+]
+
+

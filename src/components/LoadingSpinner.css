@@ -1,0 +1,45 @@
+.loading-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.loading-spinner.small {
+    padding: 20px;
+}
+
+.loading-spinner.large {
+    padding: 60px;
+}
+
+.spinner {
+    margin-bottom: 15px;
+}
+
+.spinner i {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.loading-spinner.small .spinner i {
+    font-size: 1.5rem;
+}
+
+.loading-spinner.medium .spinner i {
+    font-size: 2rem;
+}
+
+.loading-spinner.large .spinner i {
+    font-size: 3rem;
+}
+
+.loading-spinner p {
+    color: var(--text-light);
+    margin: 0;
+}
+
+

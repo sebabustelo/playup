@@ -1,0 +1,108 @@
+.resumen-pagos {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.resumen-pagos h3 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+}
+
+.resumen-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.resumen-card {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid;
+}
+
+.resumen-card.pendiente {
+    border-left-color: #ff9800;
+}
+
+.resumen-card.pagado {
+    border-left-color: #4CAF50;
+}
+
+.resumen-card.total {
+    border-left-color: #2196F3;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.resumen-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.resumen-card.total .resumen-header {
+    color: white;
+}
+
+.resumen-header i {
+    font-size: 1.2rem;
+}
+
+.resumen-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.resumen-cantidad {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.resumen-card.total .resumen-cantidad {
+    color: white;
+}
+
+.resumen-monto {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.resumen-card.total .resumen-monto {
+    color: white;
+}
+
+.resumen-alerta {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 5px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #856404;
+}
+
+.resumen-alerta i {
+    font-size: 1.2rem;
+    color: #ff9800;
+}
+
+@media (max-width: 768px) {
+    .resumen-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+

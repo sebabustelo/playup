@@ -1,0 +1,117 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function para verificar si es admin
+    // Nota: Para desarrollo, también permite escritura si no hay autenticación (cargar datos de ejemplo)
+    function isAdmin() {
+      // Permitir escritura sin autenticación temporalmente (solo para cargar datos de ejemplo)
+      // TODO: Remover esto en producción y usar solo la verificación de usuarios
+      return request.auth == null || 
+             (request.auth != null && 
+              exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+              get(/databases/$(database)/documents/users/$(request.auth.uid)).data.roles.hasAny(['admin']));
+    }
+    
+    // Helper function para verificar si es el creador
+    function isOwner(userId) {
+      return request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Colección de usuarios
+    match /users/{userId} {
+      allow read: if request.auth != null;
+      allow write: if isAdmin() || isOwner(userId);
+    }
+    
+    // Colección de predios
+    match /predios/{predioId} {
+      allow read: if true; // Público puede leer
+      // Permitir escritura sin autenticación temporalmente (para cargar datos de ejemplo)
+      // En producción, cambiar a: allow write: if isAdmin();
+      allow write: if true; // TEMPORAL: Permitir escritura a todos para desarrollo
+    }
+    
+    // Colección de canchas
+    match /canchas/{canchaId} {
+      allow read: if true; // Público puede leer
+      allow write: if true; // TEMPORAL: Permitir escritura a todos para desarrollo
+    }
+    
+    // Colección de precios
+    match /precios/{precioId} {
+      allow read: if true; // Público puede leer precios
+      allow write: if true; // TEMPORAL: Permitir escritura a todos para desarrollo
+    }
+    
+    // Colección de promociones
+    match /promociones/{promocionId} {
+      allow read: if true; // Público puede leer promociones
+      allow write: if true; // TEMPORAL: Permitir escritura a todos para desarrollo
+    }
+    
+    // Colección de deportes
+    match /deportes/{deporteId} {
+      allow read: if true;
+      allow write: if true; // TEMPORAL: Permitir escritura a todos para desarrollo
+    }
+    
+    // Colección de franjas horarias
+    match /franjas_horarias/{franjaId} {
+      allow read: if true;
+      allow write: if true; // TEMPORAL: Permitir escritura a todos para desarrollo
+    }
+    
+    // Colección de servicios
+    match /servicios/{servicioId} {
+      allow read: if true;
+      allow write: if true; // TEMPORAL: Permitir escritura a todos para desarrollo
+    }
+    
+    // Colección de partidos
+    match /partidos/{partidoId} {
+      // Cualquier usuario autenticado puede leer partidos, o público temporalmente para desarrollo
+      allow read: if request.auth != null || true; // TEMPORAL: Permitir lectura pública
+      
+      // Permitir creación temporalmente sin autenticación (para desarrollo con adminUsuarios.json)
+      // En producción, cambiar a: allow create: if request.auth != null && request.resource.data.creadorId == request.auth.uid;
+      allow create: if true; // TEMPORAL: Permitir creación sin autenticación
+      
+      // Solo el creador o admin puede actualizar/eliminar
+      // TEMPORAL: Permitir actualización sin autenticación para desarrollo
+      allow update, delete: if true; // TEMPORAL: Permitir edición sin autenticación
+      
+      // Helper function para verificar si es el creador del partido
+      function isPartidoOwner() {
+        return request.auth != null && 
+               get(/databases/$(database)/documents/partidos/$(partidoId)).data.creadorId == request.auth.uid;
+      }
+      
+      // Subcolección de jugadores
+      match /jugadores/{jugadorId} {
+        allow read: if request.auth != null || true; // TEMPORAL: Permitir lectura pública
+        allow create: if true; // TEMPORAL: Permitir creación sin autenticación
+        allow update, delete: if true; // TEMPORAL: Permitir edición sin autenticación
+      }
+      
+      // Subcolección de pagos
+      match /pagos/{pagoId} {
+        allow read: if request.auth != null || true; // TEMPORAL: Permitir lectura pública
+        allow create: if true; // TEMPORAL: Permitir creación sin autenticación
+        allow update, delete: if true; // TEMPORAL: Permitir edición sin autenticación
+      }
+      
+      // Subcolección de servicios
+      match /servicios/{servicioPartidoId} {
+        allow read: if request.auth != null || true; // TEMPORAL: Permitir lectura pública
+        allow create: if true; // TEMPORAL: Permitir creación sin autenticación
+        allow update, delete: if true; // TEMPORAL: Permitir edición sin autenticación
+      }
+    }
+    
+    // Denegar todo lo demás por defecto
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

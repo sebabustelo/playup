@@ -1,0 +1,100 @@
+[
+  {
+    "canchaId": "cancha_1",
+    "franjaHorariaId": "franja_18_19",
+    "diaSemana": "1",
+    "precio": 5000,
+    "esFeriado": false,
+    "activo": true
+  },
+  {
+    "canchaId": "cancha_1",
+    "franjaHorariaId": "franja_19_20",
+    "diaSemana": "1",
+    "precio": 5500,
+    "esFeriado": false,
+    "activo": true
+  },
+  {
+    "canchaId": "cancha_1",
+    "franjaHorariaId": "franja_20_21",
+    "diaSemana": "1",
+    "precio": 6000,
+    "esFeriado": false,
+    "activo": true
+  },
+  {
+    "canchaId": "cancha_1",
+    "franjaHorariaId": "franja_18_19",
+    "diaSemana": "5",
+    "precio": 6000,
+    "esFeriado": false,
+    "activo": true
+  },
+  {
+    "canchaId": "cancha_1",
+    "franjaHorariaId": "franja_19_20",
+    "diaSemana": "5",
+    "precio": 6500,
+    "esFeriado": false,
+    "activo": true
+  },
+  {
+    "canchaId": "cancha_1",
+    "franjaHorariaId": "franja_20_21",
+    "diaSemana": "5",
+    "precio": 7000,
+    "esFeriado": false,
+    "activo": true
+  },
+  {
+    "canchaId": "cancha_1",
+    "franjaHorariaId": "franja_18_19",
+    "diaSemana": "6",
+    "precio": 7000,
+    "esFeriado": false,
+    "activo": true
+  },
+  {
+    "canchaId": "cancha_1",
+    "franjaHorariaId": "franja_19_20",
+    "diaSemana": "6",
+    "precio": 7500,
+    "esFeriado": false,
+    "activo": true
+  },
+  {
+    "canchaId": "cancha_1",
+    "franjaHorariaId": "franja_20_21",
+    "diaSemana": "6",
+    "precio": 8000,
+    "esFeriado": false,
+    "activo": true
+  },
+  {
+    "canchaId": "cancha_1",
+    "franjaHorariaId": "franja_18_19",
+    "diaSemana": "feriado",
+    "precio": 8000,
+    "esFeriado": true,
+    "activo": true
+  },
+  {
+    "canchaId": "cancha_1",
+    "franjaHorariaId": "franja_19_20",
+    "diaSemana": "feriado",
+    "precio": 8500,
+    "esFeriado": true,
+    "activo": true
+  },
+  {
+    "canchaId": "cancha_1",
+    "franjaHorariaId": "franja_20_21",
+    "diaSemana": "feriado",
+    "precio": 9000,
+    "esFeriado": true,
+    "activo": true
+  }
+]
+
+

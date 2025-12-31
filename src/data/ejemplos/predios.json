@@ -1,0 +1,58 @@
+[
+  {
+    "nombre": "Predio Futbol",
+    "provincia": "Buenos Aires",
+    "ciudad": "Capital Federal",
+    "direccion": "Av. Corrientes 1234",
+    "telefono": "11-1234-5678",
+    "email": "capital@prediofutbol.com",
+    "latitud": -34.603722,
+    "longitud": -58.381592,
+    "activo": true
+  },
+  {
+    "nombre": "Predio Futbol",
+    "provincia": "Buenos Aires",
+    "ciudad": "Villa Crespo",
+    "direccion": "Av. Scalabrini Ortiz 2345",
+    "telefono": "11-2345-6789",
+    "email": "villacrespo@prediofutbol.com",
+    "latitud": -34.5950,
+    "longitud": -58.4400,
+    "activo": true
+  },
+  {
+    "nombre": "Predio Futbol",
+    "provincia": "Buenos Aires",
+    "ciudad": "Palermo",
+    "direccion": "Av. Santa Fe 3456",
+    "telefono": "11-3456-7890",
+    "email": "palermo@prediofutbol.com",
+    "latitud": -34.5890,
+    "longitud": -58.4200,
+    "activo": true
+  },
+  {
+    "nombre": "Serrano Corner",
+    "provincia": "Buenos Aires",
+    "ciudad": "Capital Federal",
+    "direccion": "Serrano 1234",
+    "telefono": "11-4567-8901",
+    "email": "info@serranocorner.com",
+    "latitud": -34.6000,
+    "longitud": -58.4300,
+    "activo": true
+  },
+  {
+    "nombre": "Padel Center",
+    "provincia": "Buenos Aires",
+    "ciudad": "Belgrano",
+    "direccion": "Av. Cabildo 4567",
+    "telefono": "11-5678-9012",
+    "email": "info@padelcenter.com",
+    "latitud": -34.5600,
+    "longitud": -58.4600,
+    "activo": true
+  }
+]
+

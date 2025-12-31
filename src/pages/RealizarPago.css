@@ -1,0 +1,292 @@
+.realizar-pago {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+.realizar-pago h2 {
+    color: #4CAF50;
+    margin-bottom: 24px;
+    font-size: 1.8rem;
+}
+
+.resumen-pago {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-left: 4px solid #4CAF50;
+}
+
+.resumen-pago h3 {
+    color: #333;
+    margin-bottom: 16px;
+    font-size: 1.3rem;
+}
+
+.resumen-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.resumen-item:last-child {
+    border-bottom: none;
+}
+
+.resumen-item.destacado {
+    background: #e8f5e9;
+    padding: 16px;
+    border-radius: 6px;
+    margin-top: 12px;
+    border: 2px solid #4CAF50;
+}
+
+.resumen-label {
+    font-weight: 600;
+    color: #666;
+}
+
+.resumen-value {
+    color: #333;
+    font-weight: 500;
+}
+
+.resumen-value-destacado {
+    color: #4CAF50;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.metodos-pago {
+    margin-bottom: 30px;
+}
+
+.metodos-pago h3 {
+    color: #333;
+    margin-bottom: 16px;
+    font-size: 1.3rem;
+}
+
+.metodos-pago-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.metodo-pago-option {
+    display: block;
+    cursor: pointer;
+}
+
+.metodo-pago-option input[type="radio"] {
+    display: none;
+}
+
+.metodo-pago-content {
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.metodo-pago-content i {
+    font-size: 2.5rem;
+    color: #4CAF50;
+    margin-bottom: 8px;
+}
+
+.metodo-pago-content span {
+    font-weight: 600;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.metodo-pago-content small {
+    color: #666;
+    font-size: 0.85rem;
+}
+
+.metodo-pago-option input[type="radio"]:checked + .metodo-pago-content {
+    border-color: #4CAF50;
+    background: #f1f8f4;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.2);
+}
+
+.metodo-pago-option:hover .metodo-pago-content {
+    border-color: #4CAF50;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.datos-transferencia {
+    background: #fff3cd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    border: 2px solid #ffc107;
+}
+
+.datos-transferencia h3 {
+    color: #856404;
+    margin-bottom: 16px;
+    font-size: 1.2rem;
+}
+
+.info-transferencia {
+    background: white;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+}
+
+.info-transferencia p {
+    margin: 6px 0;
+    color: #856404;
+}
+
+.datos-transferencia .form-group {
+    margin-bottom: 16px;
+}
+
+.datos-transferencia .form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #856404;
+}
+
+.datos-transferencia .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ffc107;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.mercado-pago-wallet-container {
+    margin-top: 30px;
+    padding: 25px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border: 2px solid #009ee3;
+}
+
+.mercado-pago-wallet-container h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.mercado-pago-wallet-container p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.wallet-wrapper {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-cancelar-wallet {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s;
+}
+
+.btn-cancelar-wallet:hover {
+    background-color: #c82333;
+}
+
+.botones-pago {
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+}
+
+.btn-volver {
+    background-color: #757575;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 24px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-volver:hover:not(:disabled) {
+    background-color: #616161;
+    transform: translateY(-2px);
+}
+
+.btn-volver:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-pagar {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 32px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    justify-content: center;
+}
+
+.btn-pagar:hover:not(:disabled) {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+}
+
+.btn-pagar:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .metodos-pago-options {
+        grid-template-columns: 1fr;
+    }
+
+    .botones-pago {
+        flex-direction: column;
+    }
+
+    .btn-pagar {
+        width: 100%;
+    }
+}
+

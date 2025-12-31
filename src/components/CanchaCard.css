@@ -1,0 +1,173 @@
+.cancha-card {
+    background: var(--surface);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+}
+
+.cancha-card::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 12px;
+    background: var(--gradient-primary);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.cancha-card:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.cancha-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.cancha-title-section {
+    flex: 1;
+}
+
+.cancha-card-header h3 {
+    color: var(--text);
+    margin: 0 0 8px 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.cancha-predio-nombre {
+    margin: 0;
+    color: var(--primary-blue);
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cancha-predio-nombre i {
+    font-size: 0.9rem;
+}
+
+.cancha-deporte-badge {
+    background: var(--gradient-primary);
+    color: var(--text);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    margin-left: 12px;
+}
+
+.cancha-info-item {
+    display: flex;
+    align-items: flex-start;
+    margin: 12px 0;
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.cancha-info-item i {
+    color: var(--primary-green);
+    margin-right: 10px;
+    margin-top: 2px;
+    width: 18px;
+    flex-shrink: 0;
+}
+
+.cancha-info-label {
+    font-weight: 600;
+    color: var(--text);
+    margin-right: 6px;
+}
+
+.cancha-info-value {
+    color: var(--text-light);
+    flex: 1;
+}
+
+.cancha-caracteristicas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 16px 0;
+    padding-top: 16px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.cancha-caracteristica-tag {
+    background: rgba(30, 136, 229, 0.1);
+    color: var(--text);
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 0.85rem;
+    border: 1px solid var(--border);
+}
+
+.cancha-card-footer {
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.btn-ver-cancha {
+    width: 100%;
+    padding: 12px 20px;
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-ver-cancha:hover {
+    background: linear-gradient(135deg, var(--primary-blue-light) 0%, var(--primary-green-light) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow-accent);
+}
+
+.btn-ver-cancha i {
+    transition: transform 0.3s ease;
+}
+
+.cancha-card:hover .btn-ver-cancha i {
+    transform: translateX(4px);
+}
+
+@media (max-width: 768px) {
+    .cancha-card {
+        padding: 20px;
+    }
+
+    .cancha-card-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .cancha-deporte-badge {
+        margin-left: 0;
+        align-self: flex-start;
+    }
+}
+

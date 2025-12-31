@@ -1,0 +1,93 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "canchas",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "predioId",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "deporte",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "tipo",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "canchas",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "ciudad",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "deporte",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "partidos",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "creadorId",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "estado",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "fecha",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "precios",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "canchaId",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "diaSemana",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "horarioInicio",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "promociones",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "canchaId",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "activa",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "fechaInicio",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}
+
+

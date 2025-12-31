@@ -1,0 +1,54 @@
+.firebase-alert {
+    background: #fff3cd;
+    border: 2px solid #ffc107;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.alert-content {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.alert-content i {
+    font-size: 1.5rem;
+    color: #ff9800;
+    margin-top: 2px;
+}
+
+.alert-content strong {
+    display: block;
+    color: #856404;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.alert-content p {
+    color: #856404;
+    margin: 5px 0;
+    line-height: 1.6;
+}
+
+.alert-content code {
+    background: #fff;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    color: #d32f2f;
+}
+
+.alert-details {
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+.alert-link {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #ffc107;
+    font-size: 0.9rem;
+}
+

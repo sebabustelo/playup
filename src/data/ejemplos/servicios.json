@@ -1,0 +1,34 @@
+[
+  {
+    "nombre": "Grabación Beelup",
+    "descripcion": "Grabación profesional del partido con múltiples cámaras y edición",
+    "precio": 5000,
+    "activo": true
+  },
+  {
+    "nombre": "Alquiler de Pelotas",
+    "descripcion": "Set completo de pelotas para el partido",
+    "precio": 2000,
+    "activo": true
+  },
+  {
+    "nombre": "Arbitraje",
+    "descripcion": "Árbitro profesional para el partido",
+    "precio": 3000,
+    "activo": true
+  },
+  {
+    "nombre": "Vestuarios Premium",
+    "descripcion": "Acceso a vestuarios con duchas y lockers",
+    "precio": 1500,
+    "activo": true
+  },
+  {
+    "nombre": "Bar y Catering",
+    "descripcion": "Servicio de bar y comida para el partido",
+    "precio": 8000,
+    "activo": true
+  }
+]
+
+

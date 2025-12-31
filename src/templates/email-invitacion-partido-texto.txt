@@ -1,0 +1,33 @@
+¡Has sido invitado a un partido!
+
+Hola {{to_name}},
+
+Has sido invitado a un partido de {{tipo_partido}}. ¡Esperamos que puedas acompañarnos!
+
+DETALLES DEL PARTIDO
+====================
+
+Cancha: {{cancha_nombre}}
+Dirección: {{cancha_direccion}}
+Fecha: {{fecha}}
+Hora: {{hora}}
+Tipo: {{tipo_partido}}
+Monto a pagar: {{monto}}
+Organizador: {{organizador}}
+
+{{#if descripcion}}
+Descripción: {{descripcion}}
+{{/if}}
+
+Ver detalles del partido: https://playup.com/partido/{{partido_id}}
+
+¡Nos vemos en la cancha! ⚽
+
+---
+PlayUp - Organiza tus partidos
+soporte@playup.com
+
+Este email fue enviado porque fuiste invitado a un partido en PlayUp.
+Para cancelar tu suscripción: https://playup.com/unsubscribe?email={{to_email}}
+
+
